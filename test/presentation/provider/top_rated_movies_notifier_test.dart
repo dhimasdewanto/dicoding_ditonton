@@ -6,13 +6,13 @@ import 'package:dicoding_ditonton/domain/usecases/get_top_rated_movies.dart';
 import 'package:dicoding_ditonton/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'top_rated_movies_notifier_test.mocks.dart';
+class MockGetTopRatedMovies extends Mock implements GetTopRatedMovies {}
 
 @GenerateMocks([GetTopRatedMovies])
 void main() {
-  late MockGetTopRatedMovies mockGetTopRatedMovies;
+  late GetTopRatedMovies mockGetTopRatedMovies;
   late TopRatedMoviesNotifier notifier;
   late int listenerCallCount;
 
@@ -45,7 +45,7 @@ void main() {
 
   test('should change state to loading when usecase is called', () async {
     // arrange
-    when(mockGetTopRatedMovies.execute())
+    when(() => mockGetTopRatedMovies.execute())
         .thenAnswer((_) async => Right(tMovieList));
     // act
     notifier.fetchTopRatedMovies();
@@ -56,7 +56,7 @@ void main() {
 
   test('should change movies data when data is gotten successfully', () async {
     // arrange
-    when(mockGetTopRatedMovies.execute())
+    when(() => mockGetTopRatedMovies.execute())
         .thenAnswer((_) async => Right(tMovieList));
     // act
     await notifier.fetchTopRatedMovies();
@@ -68,7 +68,7 @@ void main() {
 
   test('should return error when data is unsuccessful', () async {
     // arrange
-    when(mockGetTopRatedMovies.execute())
+    when(() => mockGetTopRatedMovies.execute())
         .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
     // act
     await notifier.fetchTopRatedMovies();

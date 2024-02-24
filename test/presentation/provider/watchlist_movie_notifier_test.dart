@@ -5,15 +5,16 @@ import 'package:dicoding_ditonton/domain/usecases/get_watchlist_movies.dart';
 import 'package:dicoding_ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../dummy_data/dummy_objects.dart';
-import 'watchlist_movie_notifier_test.mocks.dart';
+
+class MockGetWatchlistMovies extends Mock implements GetWatchlistMovies {}
 
 @GenerateMocks([GetWatchlistMovies])
 void main() {
   late WatchlistMovieNotifier provider;
-  late MockGetWatchlistMovies mockGetWatchlistMovies;
+  late GetWatchlistMovies mockGetWatchlistMovies;
   late int listenerCallCount;
 
   setUp(() {
@@ -28,7 +29,7 @@ void main() {
 
   test('should change movies data when data is gotten successfully', () async {
     // arrange
-    when(mockGetWatchlistMovies.execute())
+    when(() => mockGetWatchlistMovies.execute())
         .thenAnswer((_) async => const Right([testWatchlistMovie]));
     // act
     await provider.fetchWatchlistMovies();
@@ -40,7 +41,7 @@ void main() {
 
   test('should return error when data is unsuccessful', () async {
     // arrange
-    when(mockGetWatchlistMovies.execute())
+    when(() => mockGetWatchlistMovies.execute())
         .thenAnswer((_) async => const Left(DatabaseFailure("Can't get data")));
     // act
     await provider.fetchWatchlistMovies();

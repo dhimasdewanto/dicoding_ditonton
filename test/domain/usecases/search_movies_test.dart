@@ -1,17 +1,18 @@
+import 'package:dicoding_ditonton/domain/repositories/movie_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:dicoding_ditonton/domain/entities/movie.dart';
 import 'package:dicoding_ditonton/domain/usecases/search_movies.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import '../../helpers/test_helper.mocks.dart';
+import '../../helpers/test_helper.dart';
 
 void main() {
   late SearchMovies usecase;
-  late MockMovieRepository mockMovieRepository;
+  late MovieRepository mockMovieRepository;
 
   setUp(() {
-    mockMovieRepository = MockMovieRepository();
+    mockMovieRepository = MockV2MovieRepository();
     usecase = SearchMovies(mockMovieRepository);
   });
 
@@ -20,7 +21,7 @@ void main() {
 
   test('should get list of movies from the repository', () async {
     // arrange
-    when(mockMovieRepository.searchMovies(tQuery))
+    when(() => mockMovieRepository.searchMovies(tQuery))
         .thenAnswer((_) async => Right(tMovies));
     // act
     final result = await usecase.execute(tQuery);

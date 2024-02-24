@@ -8,23 +8,29 @@ import 'package:dicoding_ditonton/presentation/provider/movie_list_notifier.dart
 import 'package:dicoding_ditonton/common/state_enum.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'movie_list_notifier_test.mocks.dart';
+class MockV2GetNowPlayingMovies extends Mock implements GetNowPlayingMovies {}
+class MockV2GetPopularMovies extends Mock implements GetPopularMovies {}
+class MockV2GetTopRatedMovies extends Mock implements GetTopRatedMovies {}
 
-@GenerateMocks([GetNowPlayingMovies, GetPopularMovies, GetTopRatedMovies])
+@GenerateMocks([
+  GetNowPlayingMovies,
+  GetPopularMovies,
+  GetTopRatedMovies,
+])
 void main() {
   late MovieListNotifier provider;
-  late MockGetNowPlayingMovies mockGetNowPlayingMovies;
-  late MockGetPopularMovies mockGetPopularMovies;
-  late MockGetTopRatedMovies mockGetTopRatedMovies;
+  late GetNowPlayingMovies mockGetNowPlayingMovies;
+  late GetPopularMovies mockGetPopularMovies;
+  late GetTopRatedMovies mockGetTopRatedMovies;
   late int listenerCallCount;
 
   setUp(() {
     listenerCallCount = 0;
-    mockGetNowPlayingMovies = MockGetNowPlayingMovies();
-    mockGetPopularMovies = MockGetPopularMovies();
-    mockGetTopRatedMovies = MockGetTopRatedMovies();
+    mockGetNowPlayingMovies = MockV2GetNowPlayingMovies();
+    mockGetPopularMovies = MockV2GetPopularMovies();
+    mockGetTopRatedMovies = MockV2GetTopRatedMovies();
     provider = MovieListNotifier(
       getNowPlayingMovies: mockGetNowPlayingMovies,
       getPopularMovies: mockGetPopularMovies,
@@ -58,17 +64,17 @@ void main() {
 
     test('should get data from the usecase', () async {
       // arrange
-      when(mockGetNowPlayingMovies.execute())
+      when(() => mockGetNowPlayingMovies.execute())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       provider.fetchNowPlayingMovies();
       // assert
-      verify(mockGetNowPlayingMovies.execute());
+      verify(() => mockGetNowPlayingMovies.execute());
     });
 
     test('should change state to Loading when usecase is called', () {
       // arrange
-      when(mockGetNowPlayingMovies.execute())
+      when(() => mockGetNowPlayingMovies.execute())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       provider.fetchNowPlayingMovies();
@@ -78,7 +84,7 @@ void main() {
 
     test('should change movies when data is gotten successfully', () async {
       // arrange
-      when(mockGetNowPlayingMovies.execute())
+      when(() => mockGetNowPlayingMovies.execute())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       await provider.fetchNowPlayingMovies();
@@ -90,7 +96,7 @@ void main() {
 
     test('should return error when data is unsuccessful', () async {
       // arrange
-      when(mockGetNowPlayingMovies.execute())
+      when(() => mockGetNowPlayingMovies.execute())
           .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchNowPlayingMovies();
@@ -104,19 +110,19 @@ void main() {
   group('popular movies', () {
     test('should change state to loading when usecase is called', () async {
       // arrange
-      when(mockGetPopularMovies.execute())
+      when(() => mockGetPopularMovies.execute())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       provider.fetchPopularMovies();
       // assert
       expect(provider.popularMoviesState, RequestState.loading);
-      // verify(provider.setState(RequestState.loading));
+      // verify(() => provider.setState(RequestState.loading));
     });
 
     test('should change movies data when data is gotten successfully',
         () async {
       // arrange
-      when(mockGetPopularMovies.execute())
+      when(() => mockGetPopularMovies.execute())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       await provider.fetchPopularMovies();
@@ -128,7 +134,7 @@ void main() {
 
     test('should return error when data is unsuccessful', () async {
       // arrange
-      when(mockGetPopularMovies.execute())
+      when(() => mockGetPopularMovies.execute())
           .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchPopularMovies();
@@ -142,7 +148,7 @@ void main() {
   group('top rated movies', () {
     test('should change state to loading when usecase is called', () async {
       // arrange
-      when(mockGetTopRatedMovies.execute())
+      when(() => mockGetTopRatedMovies.execute())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       provider.fetchTopRatedMovies();
@@ -153,7 +159,7 @@ void main() {
     test('should change movies data when data is gotten successfully',
         () async {
       // arrange
-      when(mockGetTopRatedMovies.execute())
+      when(() => mockGetTopRatedMovies.execute())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       await provider.fetchTopRatedMovies();
@@ -165,7 +171,7 @@ void main() {
 
     test('should return error when data is unsuccessful', () async {
       // arrange
-      when(mockGetTopRatedMovies.execute())
+      when(() => mockGetTopRatedMovies.execute())
           .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchTopRatedMovies();
