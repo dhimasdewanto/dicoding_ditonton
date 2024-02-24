@@ -1,14 +1,15 @@
 import 'package:fpdart/fpdart.dart';
+
 import '../../common/failure.dart';
 import '../../domain/entities/movie_detail.dart';
-import '../../domain/repositories/movie_repository.dart';
+import '../repositories/watchlist_repository.dart';
 
 class SaveWatchlist {
-  final MovieRepository repository;
+  final WatchlistRepository repository;
 
   SaveWatchlist(this.repository);
 
   Future<Either<Failure, String>> call(MovieDetail movie) {
-    return repository.saveWatchlist(movie);
+    return repository.saveDetail(movie);
   }
 }

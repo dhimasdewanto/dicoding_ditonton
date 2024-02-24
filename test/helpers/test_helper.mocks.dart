@@ -185,68 +185,6 @@ class MockMovieRepository extends _i1.Mock implements _i4.MovieRepository {
           ),
         )),
       ) as _i5.Future<_i6.Either<_i7.Failure, List<_i8.Movie>>>);
-
-  @override
-  _i5.Future<_i6.Either<_i7.Failure, String>> saveWatchlist(
-          _i10.MovieDetail? movie) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #saveWatchlist,
-          [movie],
-        ),
-        returnValue: _i5.Future<_i6.Either<_i7.Failure, String>>.value(
-            _i9.dummyValue<_i6.Either<_i7.Failure, String>>(
-          this,
-          Invocation.method(
-            #saveWatchlist,
-            [movie],
-          ),
-        )),
-      ) as _i5.Future<_i6.Either<_i7.Failure, String>>);
-
-  @override
-  _i5.Future<_i6.Either<_i7.Failure, String>> removeWatchlist(
-          _i10.MovieDetail? movie) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #removeWatchlist,
-          [movie],
-        ),
-        returnValue: _i5.Future<_i6.Either<_i7.Failure, String>>.value(
-            _i9.dummyValue<_i6.Either<_i7.Failure, String>>(
-          this,
-          Invocation.method(
-            #removeWatchlist,
-            [movie],
-          ),
-        )),
-      ) as _i5.Future<_i6.Either<_i7.Failure, String>>);
-
-  @override
-  _i5.Future<bool> isAddedToWatchlist(int? id) => (super.noSuchMethod(
-        Invocation.method(
-          #isAddedToWatchlist,
-          [id],
-        ),
-        returnValue: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
-
-  @override
-  _i5.Future<_i6.Either<_i7.Failure, List<_i8.Movie>>> getWatchlistMovies() =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #getWatchlistMovies,
-          [],
-        ),
-        returnValue: _i5.Future<_i6.Either<_i7.Failure, List<_i8.Movie>>>.value(
-            _i9.dummyValue<_i6.Either<_i7.Failure, List<_i8.Movie>>>(
-          this,
-          Invocation.method(
-            #getWatchlistMovies,
-            [],
-          ),
-        )),
-      ) as _i5.Future<_i6.Either<_i7.Failure, List<_i8.Movie>>>);
 }
 
 /// A class which mocks [MovieRemoteDataSource].

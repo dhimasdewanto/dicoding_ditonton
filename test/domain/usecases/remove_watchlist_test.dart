@@ -1,4 +1,4 @@
-import 'package:dicoding_ditonton/domain/repositories/movie_repository.dart';
+import 'package:dicoding_ditonton/domain/repositories/watchlist_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:dicoding_ditonton/domain/usecases/remove_watchlist.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -9,21 +9,21 @@ import '../../helpers/test_helper.dart';
 
 void main() {
   late RemoveWatchlist usecase;
-  late MovieRepository mockMovieRepository;
+  late WatchlistRepository repo;
 
   setUp(() {
-    mockMovieRepository = MockV2MovieRepository();
-    usecase = RemoveWatchlist(mockMovieRepository);
+    repo = MockWatchlistRepository();
+    usecase = RemoveWatchlist(repo);
   });
 
   test('should remove watchlist movie from repository', () async {
     // arrange
-    when(() => mockMovieRepository.removeWatchlist(testMovieDetail))
+    when(() => repo.removeDetail(testMovieDetail))
         .thenAnswer((_) async => const Right('Removed from watchlist'));
     // act
     final result = await usecase(testMovieDetail);
     // assert
-    verify(() => mockMovieRepository.removeWatchlist(testMovieDetail));
+    verify(() => repo.removeDetail(testMovieDetail));
     expect(result, const Right('Removed from watchlist'));
   });
 }

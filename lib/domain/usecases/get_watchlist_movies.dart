@@ -1,14 +1,15 @@
 import 'package:fpdart/fpdart.dart';
-import '../../domain/entities/movie.dart';
-import '../../domain/repositories/movie_repository.dart';
+
 import '../../common/failure.dart';
+import '../../domain/entities/movie.dart';
+import '../repositories/watchlist_repository.dart';
 
 class GetWatchlistMovies {
-  final MovieRepository _repository;
+  final WatchlistRepository _repository;
 
   GetWatchlistMovies(this._repository);
 
   Future<Either<Failure, List<Movie>>> call() {
-    return _repository.getWatchlistMovies();
+    return _repository.getList();
   }
 }
