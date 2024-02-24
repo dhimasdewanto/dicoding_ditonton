@@ -8,9 +8,14 @@ import 'package:mocktail/mocktail.dart';
 
 /// Using mocktail.
 class MockV2MovieRepository extends Mock implements MovieRepository {}
-class MockV2MovieRemoteDataSource extends Mock implements MovieRemoteDataSource {}
+
+class MockV2MovieRemoteDataSource extends Mock
+    implements MovieRemoteDataSource {}
+
 class MockV2MovieLocalDataSource extends Mock implements MovieLocalDataSource {}
+
 class MockV2DatabaseHelper extends Mock implements DatabaseHelper {}
+
 class MockV2HttpClient extends Mock implements http.Client {}
 
 /// Using mockito.
@@ -23,3 +28,14 @@ class MockV2HttpClient extends Mock implements http.Client {}
   MockSpec<http.Client>(as: #MockHttpClient)
 ])
 void main() {}
+
+/// Get 200 response from json body.
+http.Response get200Json(String json) {
+  return http.Response(
+    json,
+    200,
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+    },
+  );
+}
