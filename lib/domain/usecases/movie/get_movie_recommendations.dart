@@ -1,8 +1,8 @@
 import 'package:fpdart/fpdart.dart';
 
-import '../../domain/entities/movie.dart';
-import '../../domain/repositories/movie_repository.dart';
-import '../../common/failure.dart';
+import '../../entities/movie.dart';
+import '../../repositories/movie_repository.dart';
+import '../../../common/failure.dart';
 
 class GetMovieRecommendations {
   final MovieRepository repository;

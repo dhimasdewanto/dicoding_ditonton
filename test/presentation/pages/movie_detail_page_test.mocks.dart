@@ -9,13 +9,13 @@ import 'dart:ui' as _i13;
 import 'package:dicoding_ditonton/common/state_enum.dart' as _i9;
 import 'package:dicoding_ditonton/domain/entities/movie.dart' as _i10;
 import 'package:dicoding_ditonton/domain/entities/movie_detail.dart' as _i7;
-import 'package:dicoding_ditonton/domain/usecases/get_movie_detail.dart' as _i2;
-import 'package:dicoding_ditonton/domain/usecases/get_movie_recommendations.dart'
+import 'package:dicoding_ditonton/domain/usecases/movie/get_movie_detail.dart' as _i2;
+import 'package:dicoding_ditonton/domain/usecases/movie/get_movie_recommendations.dart'
     as _i3;
-import 'package:dicoding_ditonton/domain/usecases/get_watchlist_status.dart'
+import 'package:dicoding_ditonton/domain/usecases/movie/get_watchlist_status.dart'
     as _i4;
-import 'package:dicoding_ditonton/domain/usecases/remove_watchlist.dart' as _i6;
-import 'package:dicoding_ditonton/domain/usecases/save_watchlist.dart' as _i5;
+import 'package:dicoding_ditonton/domain/usecases/movie/remove_watchlist.dart' as _i6;
+import 'package:dicoding_ditonton/domain/usecases/movie/save_watchlist.dart' as _i5;
 import 'package:dicoding_ditonton/presentation/provider/movie_detail_notifier.dart'
     as _i8;
 import 'package:mockito/mockito.dart' as _i1;

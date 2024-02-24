@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:dicoding_ditonton/common/failure.dart';
 import 'package:dicoding_ditonton/common/state_enum.dart';
-import 'package:dicoding_ditonton/domain/usecases/get_watchlist_movies.dart';
+import 'package:dicoding_ditonton/domain/usecases/movie/get_watchlist_movies.dart';
 import 'package:dicoding_ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

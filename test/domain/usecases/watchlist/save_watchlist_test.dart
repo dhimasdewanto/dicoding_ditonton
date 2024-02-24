@@ -1,11 +1,11 @@
 import 'package:dicoding_ditonton/domain/repositories/watchlist_repository.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:dicoding_ditonton/domain/usecases/save_watchlist.dart';
+import 'package:dicoding_ditonton/domain/usecases/watchlist/save_watchlist.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../dummy_data/dummy_objects.dart';
-import '../../helpers/test_helper.dart';
+import '../../../dummy_data/dummy_objects.dart';
+import '../../../helpers/test_helper.dart';
 
 void main() {
   late SaveWatchlist usecase;
@@ -13,17 +13,17 @@ void main() {
 
   setUp(() {
     repo = MockWatchlistRepository();
-    usecase = SaveWatchlist(repo);
+    usecase = SaveWatchlist(repo: repo);
   });
 
-  test('should save movie to the repository', () async {
+  test('Should save watchlist to the repository', () async {
     // arrange
-    when(() => repo.saveDetail(testMovieDetail))
+    when(() => repo.save(testMovie2))
         .thenAnswer((_) async => const Right('Added to Watchlist'));
     // act
-    final result = await usecase(testMovieDetail);
+    final result = await usecase(testMovie2);
     // assert
-    verify(() => repo.saveDetail(testMovieDetail));
+    verify(() => repo.save(testMovie2));
     expect(result, const Right('Added to Watchlist'));
   });
 }

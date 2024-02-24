@@ -1,11 +1,11 @@
 import 'package:dicoding_ditonton/domain/repositories/watchlist_repository.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:dicoding_ditonton/domain/usecases/remove_watchlist.dart';
+import 'package:dicoding_ditonton/domain/usecases/movie/remove_watchlist.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../dummy_data/dummy_objects.dart';
-import '../../helpers/test_helper.dart';
+import '../../../dummy_data/dummy_objects.dart';
+import '../../../helpers/test_helper.dart';
 
 void main() {
   late RemoveWatchlist usecase;

@@ -1,8 +1,8 @@
 import 'package:fpdart/fpdart.dart';
 
-import '../../common/failure.dart';
-import '../../domain/entities/movie_detail.dart';
-import '../../domain/repositories/movie_repository.dart';
+import '../../../common/failure.dart';
+import '../../entities/movie_detail.dart';
+import '../../repositories/movie_repository.dart';
 
 class GetMovieDetail {
   final MovieRepository repository;

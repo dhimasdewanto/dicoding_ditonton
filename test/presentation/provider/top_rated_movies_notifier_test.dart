@@ -2,7 +2,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:dicoding_ditonton/common/failure.dart';
 import 'package:dicoding_ditonton/common/state_enum.dart';
 import 'package:dicoding_ditonton/domain/entities/movie.dart';
-import 'package:dicoding_ditonton/domain/usecases/get_top_rated_movies.dart';
+import 'package:dicoding_ditonton/domain/usecases/movie/get_top_rated_movies.dart';
 import 'package:dicoding_ditonton/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

@@ -1,11 +1,11 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:dicoding_ditonton/domain/entities/movie.dart';
-import 'package:dicoding_ditonton/domain/usecases/get_movie_detail.dart';
-import 'package:dicoding_ditonton/domain/usecases/get_movie_recommendations.dart';
+import 'package:dicoding_ditonton/domain/usecases/movie/get_movie_detail.dart';
+import 'package:dicoding_ditonton/domain/usecases/movie/get_movie_recommendations.dart';
 import 'package:dicoding_ditonton/common/failure.dart';
-import 'package:dicoding_ditonton/domain/usecases/get_watchlist_status.dart';
-import 'package:dicoding_ditonton/domain/usecases/remove_watchlist.dart';
-import 'package:dicoding_ditonton/domain/usecases/save_watchlist.dart';
+import 'package:dicoding_ditonton/domain/usecases/movie/get_watchlist_status.dart';
+import 'package:dicoding_ditonton/domain/usecases/movie/remove_watchlist.dart';
+import 'package:dicoding_ditonton/domain/usecases/movie/save_watchlist.dart';
 import 'package:dicoding_ditonton/presentation/provider/movie_detail_notifier.dart';
 import 'package:dicoding_ditonton/common/state_enum.dart';
 import 'package:flutter_test/flutter_test.dart';

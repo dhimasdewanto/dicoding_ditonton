@@ -1,8 +1,8 @@
 import 'package:fpdart/fpdart.dart';
 
-import '../../common/failure.dart';
-import '../../domain/entities/movie.dart';
-import '../repositories/watchlist_repository.dart';
+import '../../../common/failure.dart';
+import '../../entities/movie.dart';
+import '../../repositories/watchlist_repository.dart';
 
 class GetWatchlistMovies {
   final WatchlistRepository _repository;

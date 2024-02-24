@@ -8,7 +8,7 @@ import 'dart:ui' as _i8;
 
 import 'package:dicoding_ditonton/common/state_enum.dart' as _i4;
 import 'package:dicoding_ditonton/domain/entities/movie.dart' as _i5;
-import 'package:dicoding_ditonton/domain/usecases/get_top_rated_movies.dart'
+import 'package:dicoding_ditonton/domain/usecases/movie/get_top_rated_movies.dart'
     as _i2;
 import 'package:dicoding_ditonton/presentation/provider/top_rated_movies_notifier.dart'
     as _i3;

@@ -1,11 +1,11 @@
 import 'package:dicoding_ditonton/domain/repositories/movie_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:dicoding_ditonton/domain/entities/movie.dart';
-import 'package:dicoding_ditonton/domain/usecases/get_top_rated_movies.dart';
+import 'package:dicoding_ditonton/domain/usecases/movie/get_top_rated_movies.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../helpers/test_helper.dart';
+import '../../../helpers/test_helper.dart';
 
 void main() {
   late GetTopRatedMovies usecase;

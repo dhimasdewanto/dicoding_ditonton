@@ -1,4 +1,4 @@
-import '../repositories/watchlist_repository.dart';
+import '../../repositories/watchlist_repository.dart';
 
 class GetWatchListStatus {
   final WatchlistRepository repository;
