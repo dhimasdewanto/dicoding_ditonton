@@ -23,7 +23,7 @@ void main() {
   });
 
   group(
-    'Get Airing Today TV Shows',
+    'Get On The Air TV Shows',
     () {
       final json = readJson('dummy_data/tv_airing_today.json');
       final tvMovieList = TvResponse.fromJson(jsonDecode(json)).results;
@@ -38,7 +38,7 @@ void main() {
           );
 
           // act
-          final result = await dataSource.getAiringToday();
+          final result = await dataSource.getOnTheAir();
 
           // assert
           expect(result, tvMovieList);
@@ -56,7 +56,7 @@ void main() {
           );
 
           // act
-          final call = dataSource.getAiringToday();
+          final call = dataSource.getOnTheAir();
 
           // assert
           expect(() => call, throwsA(isA<ServerException>()));

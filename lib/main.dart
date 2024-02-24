@@ -7,6 +7,7 @@ import 'common/utils.dart';
 import 'injection.dart' as di;
 import 'presentation/pages/about_page.dart';
 import 'presentation/pages/home_movie_page.dart';
+import 'presentation/pages/home_tv_page.dart';
 import 'presentation/pages/movie_detail_page.dart';
 import 'presentation/pages/popular_movies_page.dart';
 import 'presentation/pages/search_page.dart';
@@ -62,9 +63,13 @@ class MyApp extends StatelessWidget {
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
-            case '/home':
+            case HomeMoviePage.routeName:
               return MaterialPageRoute(
                 builder: (_) => const HomeMoviePage(),
+              );
+            case HomeTvPage.routeName:
+              return MaterialPageRoute(
+                builder: (_) => const HomeTvPage(),
               );
             case PopularMoviesPage.routeName:
               return CupertinoPageRoute(

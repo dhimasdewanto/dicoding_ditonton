@@ -12,18 +12,18 @@ import '../../presentation/pages/search_page.dart';
 import '../../presentation/pages/top_rated_movies_page.dart';
 import '../../presentation/pages/watchlist_movies_page.dart';
 import '../../presentation/provider/movie_list_notifier.dart';
-import 'home_tv_page.dart';
+import 'home_movie_page.dart';
 
-class HomeMoviePage extends StatefulWidget {
-  static const routeName = '/home-movie';
+class HomeTvPage extends StatefulWidget {
+  static const routeName = '/home-tv';
 
-  const HomeMoviePage({super.key});
+  const HomeTvPage({super.key});
 
   @override
-  State<HomeMoviePage> createState() => _HomeMoviePageState();
+  State<HomeTvPage> createState() => _HomeTvPageState();
 }
 
-class _HomeMoviePageState extends State<HomeMoviePage> {
+class _HomeTvPageState extends State<HomeTvPage> {
   @override
   void initState() {
     super.initState();
@@ -53,17 +53,17 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               leading: const Icon(Icons.movie),
               title: const Text('Movies'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushReplacementNamed(
+                  context,
+                  HomeMoviePage.routeName,
+                );
               },
             ),
             ListTile(
               leading: const Icon(Icons.tv),
               title: const Text('TV Shows'),
               onTap: () {
-                Navigator.pushReplacementNamed(
-                  context,
-                  HomeTvPage.routeName,
-                );
+                Navigator.pop(context);
               },
             ),
             ListTile(
@@ -84,7 +84,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         ),
       ),
       appBar: AppBar(
-        title: const Text('Ditonton Movie'),
+        title: const Text('Ditonton TV Shows'),
         actions: [
           IconButton(
             onPressed: () {
@@ -100,9 +100,11 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Now Playing',
-                style: kHeading6,
+              _buildSubHeading(
+                title: 'On The Air',
+                onTap: () {
+                  //
+                },
               ),
               Consumer<MovieListNotifier>(builder: (context, data, child) {
                 final state = data.nowPlayingState;

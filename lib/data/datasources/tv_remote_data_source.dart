@@ -8,7 +8,7 @@ import '../models/tv_model.dart';
 import '../models/tv_response.dart';
 
 abstract class TvRemoteDataSource {
-  Future<List<TvModel>> getAiringToday();
+  Future<List<TvModel>> getOnTheAir();
   Future<List<TvModel>> getPopular();
   Future<List<TvModel>> getTopRated();
   Future<TvDetailModel> getDetail(int id);
@@ -25,9 +25,9 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
   TvRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<List<TvModel>> getAiringToday() async {
+  Future<List<TvModel>> getOnTheAir() async {
     final response =
-        await client.get(Uri.parse('$baseUrl/movie/airing_today?$apiKey'));
+        await client.get(Uri.parse('$baseUrl/tv/on_the_air?$apiKey'));
 
     if (response.statusCode == 200) {
       return TvResponse.fromJson(json.decode(response.body)).results;
@@ -39,7 +39,7 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
   @override
   Future<List<TvModel>> getPopular() async {
     final response =
-        await client.get(Uri.parse('$baseUrl/movie/popular?$apiKey'));
+        await client.get(Uri.parse('$baseUrl/tv/popular?$apiKey'));
 
     if (response.statusCode == 200) {
       return TvResponse.fromJson(json.decode(response.body)).results;
@@ -63,7 +63,7 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
   @override
   Future<List<TvModel>> getRecommendations(int id) async {
     final response = await client
-        .get(Uri.parse('$baseUrl/movie/$id/recommendations?$apiKey'));
+        .get(Uri.parse('$baseUrl/tv/$id/recommendations?$apiKey'));
 
     if (response.statusCode == 200) {
       return TvResponse.fromJson(json.decode(response.body)).results;
