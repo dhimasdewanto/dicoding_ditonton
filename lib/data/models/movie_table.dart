@@ -16,6 +16,13 @@ class MovieTable extends Equatable {
     required this.overview,
   });
 
+  factory MovieTable.fromMovie(Movie movie) => MovieTable(
+        id: movie.id,
+        title: movie.title,
+        posterPath: movie.posterPath,
+        overview: movie.overview,
+      );
+
   factory MovieTable.fromEntity(MovieDetail movie) => MovieTable(
         id: movie.id,
         title: movie.title,

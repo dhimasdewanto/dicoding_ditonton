@@ -1,12 +1,15 @@
 import 'package:equatable/equatable.dart';
 
+import '../../domain/entities/movie_detail.dart';
+import 'genre_model.dart';
+
 class TvDetailModel extends Equatable {
   final bool adult;
   final String backdropPath;
   final List<CreatedBy> createdBy;
   final List<dynamic> episodeRunTime;
   final DateTime firstAirDate;
-  final List<Genre> genres;
+  final List<GenreModel> genres;
   final String homepage;
   final int id;
   final bool inProduction;
@@ -69,6 +72,23 @@ class TvDetailModel extends Equatable {
     required this.voteCount,
   });
 
+  MovieDetail toEntity() {
+    return MovieDetail(
+      adult: adult,
+      backdropPath: backdropPath,
+      genres: genres.map((genre) => genre.toEntity()).toList(),
+      id: id,
+      originalTitle: originalName,
+      overview: overview,
+      posterPath: posterPath,
+      releaseDate: firstAirDate.toString(),
+      runtime: numberOfEpisodes,
+      title: name,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
+    );
+  }
+
   @override
   List<Object?> get props => [
         adult,
@@ -113,7 +133,7 @@ class TvDetailModel extends Equatable {
         episodeRunTime:
             List<dynamic>.from(json["episode_run_time"].map((x) => x)),
         firstAirDate: DateTime.parse(json["first_air_date"]),
-        genres: List<Genre>.from(json["genres"].map((x) => Genre.fromMap(x))),
+        genres: List<GenreModel>.from(json["genres"].map((x) => GenreModel.fromJson(x))),
         homepage: json["homepage"],
         id: json["id"],
         inProduction: json["in_production"],
@@ -155,7 +175,7 @@ class TvDetailModel extends Equatable {
         "episode_run_time": List<dynamic>.from(episodeRunTime.map((x) => x)),
         "first_air_date":
             "${firstAirDate.year.toString().padLeft(4, '0')}-${firstAirDate.month.toString().padLeft(2, '0')}-${firstAirDate.day.toString().padLeft(2, '0')}",
-        "genres": List<dynamic>.from(genres.map((x) => x.toMap())),
+        "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
         "homepage": homepage,
         "id": id,
         "in_production": inProduction,
@@ -227,32 +247,6 @@ class CreatedBy extends Equatable {
         "name": name,
         "gender": gender,
         "profile_path": profilePath,
-      };
-}
-
-class Genre extends Equatable {
-  final int id;
-  final String name;
-
-  const Genre({
-    required this.id,
-    required this.name,
-  });
-
-  @override
-  List<Object?> get props => [
-        id,
-        name,
-      ];
-
-  factory Genre.fromMap(Map<String, dynamic> json) => Genre(
-        id: json["id"],
-        name: json["name"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "name": name,
       };
 }
 
