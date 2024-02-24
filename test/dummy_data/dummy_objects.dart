@@ -20,6 +20,22 @@ const testMovie = Movie(
   voteCount: 13507,
 );
 
+const testMovie2 = Movie(
+  adult: false,
+  backdropPath: 'backdropPath',
+  genreIds: [14, 28],
+  id: 1,
+  originalTitle: 'originalTitle',
+  overview: 'overview',
+  posterPath: 'posterPath',
+  releaseDate: 'releaseDate',
+  title: 'title',
+  voteAverage: 1,
+  voteCount: 1,
+  popularity: 60.441,
+  video: false,
+);
+
 final testMovieList = [testMovie];
 
 const testMovieDetail = MovieDetail(

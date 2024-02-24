@@ -1,6 +1,7 @@
 import 'package:dicoding_ditonton/data/datasources/db/database_helper.dart';
 import 'package:dicoding_ditonton/data/datasources/movie_local_data_source.dart';
 import 'package:dicoding_ditonton/data/datasources/movie_remote_data_source.dart';
+import 'package:dicoding_ditonton/data/datasources/tv_remote_data_source.dart';
 import 'package:dicoding_ditonton/domain/repositories/movie_repository.dart';
 import 'package:dicoding_ditonton/domain/repositories/tv_repository.dart';
 import 'package:dicoding_ditonton/domain/repositories/watchlist_repository.dart';
@@ -19,6 +20,8 @@ class MockV2MovieLocalDataSource extends Mock implements MovieLocalDataSource {}
 class MockV2DatabaseHelper extends Mock implements DatabaseHelper {}
 
 class MockV2HttpClient extends Mock implements http.Client {}
+
+class MockTvRemoteDataSource extends Mock implements TvRemoteDataSource {}
 
 class MockTvRepository extends Mock implements TvRepository {}
 

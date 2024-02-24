@@ -15,7 +15,7 @@ class TvDetailModel extends Equatable {
   final bool inProduction;
   final List<String> languages;
   final DateTime lastAirDate;
-  final LastEpisodeToAir lastEpisodeToAir;
+  final LastEpisodeToAir? lastEpisodeToAir;
   final String name;
   final dynamic nextEpisodeToAir;
   final List<Network> networks;
@@ -182,7 +182,7 @@ class TvDetailModel extends Equatable {
         "languages": List<dynamic>.from(languages.map((x) => x)),
         "last_air_date":
             "${lastAirDate.year.toString().padLeft(4, '0')}-${lastAirDate.month.toString().padLeft(2, '0')}-${lastAirDate.day.toString().padLeft(2, '0')}",
-        "last_episode_to_air": lastEpisodeToAir.toMap(),
+        "last_episode_to_air": lastEpisodeToAir?.toMap(),
         "name": name,
         "next_episode_to_air": nextEpisodeToAir,
         "networks": List<dynamic>.from(networks.map((x) => x.toMap())),
