@@ -18,6 +18,8 @@ class MockV2DatabaseHelper extends Mock implements DatabaseHelper {}
 
 class MockV2HttpClient extends Mock implements http.Client {}
 
+class FakeUri extends Fake implements Uri {}
+
 /// Using mockito.
 @GenerateMocks([
   MovieRepository,

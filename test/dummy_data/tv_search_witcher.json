@@ -1,0 +1,92 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "adult": false,
+            "backdrop_path": "/foGkPxpw9h8zln81j63mix5B7m8.jpg",
+            "genre_ids": [
+                10765,
+                18,
+                10759
+            ],
+            "id": 71912,
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Witcher",
+            "overview": "Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.",
+            "popularity": 304.211,
+            "poster_path": "/cZ0d3rtvXPVvuiX22sP79K3Hmjz.jpg",
+            "first_air_date": "2019-12-20",
+            "name": "The Witcher",
+            "vote_average": 8.098,
+            "vote_count": 5465
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/ctW5cIR3romaxkynGLI00DehWlA.jpg",
+            "genre_ids": [
+                18,
+                10759,
+                10765
+            ],
+            "id": 17625,
+            "origin_country": [
+                "PL"
+            ],
+            "original_language": "pl",
+            "original_name": "Wiedźmin",
+            "overview": "Wiedźmin is a 2002 fantasy television series. 13 episodes were made. The series received relatively poor reviews, particularly in the light of the failure of the preceding movie.\n\nThe story is based on the stories of The Witcher, by Polish author Andrzej Sapkowski.",
+            "popularity": 12.183,
+            "poster_path": "/5Su6Cq1icggn2ObdsYgZyjABizA.jpg",
+            "first_air_date": "2002-09-22",
+            "name": "The Witcher",
+            "vote_average": 5.886,
+            "vote_count": 35
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/hoVuI69nygLQBJ4FqgRKnukDeKt.jpg",
+            "genre_ids": [
+                10765,
+                10759
+            ],
+            "id": 106541,
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Witcher: Blood Origin",
+            "overview": "More than a thousand years before the world of The Witcher, seven outcasts in the elven world unite in a blood quest against an unstoppable power.",
+            "popularity": 56.843,
+            "poster_path": "/vpfJK9F0UJNcAIIeC42oJyKMnZQ.jpg",
+            "first_air_date": "2022-12-25",
+            "name": "The Witcher: Blood Origin",
+            "vote_average": 6.8,
+            "vote_count": 616
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/5xGIXzU3s5015zKLvHWNftmWgqm.jpg",
+            "genre_ids": [
+                99
+            ],
+            "id": 108987,
+            "origin_country": [
+                "GB"
+            ],
+            "original_language": "en",
+            "original_name": "The Witcher: A Look Inside the Episodes",
+            "overview": "With series creator Lauren S. Hissrich as your guide, take an in-depth journey into the stories and themes powering the first season of The Witcher.",
+            "popularity": 13.073,
+            "poster_path": "/thnU4dg5tvipytPj8BEuhkiQFSW.jpg",
+            "first_air_date": "2020-08-26",
+            "name": "The Witcher: A Look Inside the Episodes",
+            "vote_average": 6.167,
+            "vote_count": 24
+        }
+    ],
+    "total_pages": 1,
+    "total_results": 4
+}

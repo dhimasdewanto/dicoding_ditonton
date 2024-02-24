@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../../common/exception.dart';
+import '../models/tv_detail_model.dart';
 import '../models/tv_model.dart';
 import '../models/tv_response.dart';
 
@@ -10,6 +11,7 @@ abstract class TvRemoteDataSource {
   Future<List<TvModel>> getAiringToday();
   Future<List<TvModel>> getPopular();
   Future<List<TvModel>> getTopRated();
+  Future<TvDetailModel> getDetail(int id);
   Future<List<TvModel>> getRecommendations(int id);
   Future<List<TvModel>> search(String query);
 }
@@ -77,6 +79,17 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
 
     if (response.statusCode == 200) {
       return TvResponse.fromJson(json.decode(response.body)).results;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<TvDetailModel> getDetail(int id) async {
+    final response = await client.get(Uri.parse('$baseUrl/tv/$id?$apiKey'));
+
+    if (response.statusCode == 200) {
+      return TvDetailModel.fromMap(json.decode(response.body));
     } else {
       throw ServerException();
     }
