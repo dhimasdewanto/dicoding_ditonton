@@ -9,26 +9,16 @@ import 'package:dicoding_ditonton/domain/usecases/save_watchlist.dart';
 import 'package:dicoding_ditonton/presentation/provider/movie_detail_notifier.dart';
 import 'package:dicoding_ditonton/common/state_enum.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../dummy_data/dummy_objects.dart';
 
-/// Using mocktail.
 class MockV2GetMovieDetail extends Mock implements GetMovieDetail {}
 class MockV2GetMovieRecommendations extends Mock implements GetMovieRecommendations {}
 class MockV2GetWatchListStatus extends Mock implements GetWatchListStatus {}
 class MockV2SaveWatchlist extends Mock implements SaveWatchlist {}
 class MockV2RemoveWatchlist extends Mock implements RemoveWatchlist {}
 
-/// Using mockito.
-@GenerateMocks([
-  GetMovieDetail,
-  GetMovieRecommendations,
-  GetWatchListStatus,
-  SaveWatchlist,
-  RemoveWatchlist,
-])
 void main() {
   late MovieDetailNotifier provider;
   late GetMovieDetail mockGetMovieDetail;

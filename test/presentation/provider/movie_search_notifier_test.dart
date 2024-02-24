@@ -5,12 +5,10 @@ import 'package:dicoding_ditonton/domain/entities/movie.dart';
 import 'package:dicoding_ditonton/domain/usecases/search_movies.dart';
 import 'package:dicoding_ditonton/presentation/provider/movie_search_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockSearchMovies extends Mock implements SearchMovies {}
 
-@GenerateMocks([SearchMovies])
 void main() {
   late MovieSearchNotifier provider;
   late SearchMovies mockSearchMovies;

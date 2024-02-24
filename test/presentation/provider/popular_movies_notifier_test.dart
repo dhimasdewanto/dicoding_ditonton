@@ -5,12 +5,10 @@ import 'package:dicoding_ditonton/domain/entities/movie.dart';
 import 'package:dicoding_ditonton/domain/usecases/get_popular_movies.dart';
 import 'package:dicoding_ditonton/presentation/provider/popular_movies_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockGetPopularMovies extends Mock implements GetPopularMovies {}
 
-@GenerateMocks([GetPopularMovies])
 void main() {
   late GetPopularMovies mockGetPopularMovies;
   late PopularMoviesNotifier notifier;

@@ -7,18 +7,12 @@ import 'package:dicoding_ditonton/domain/usecases/get_top_rated_movies.dart';
 import 'package:dicoding_ditonton/presentation/provider/movie_list_notifier.dart';
 import 'package:dicoding_ditonton/common/state_enum.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockV2GetNowPlayingMovies extends Mock implements GetNowPlayingMovies {}
 class MockV2GetPopularMovies extends Mock implements GetPopularMovies {}
 class MockV2GetTopRatedMovies extends Mock implements GetTopRatedMovies {}
 
-@GenerateMocks([
-  GetNowPlayingMovies,
-  GetPopularMovies,
-  GetTopRatedMovies,
-])
 void main() {
   late MovieListNotifier provider;
   late GetNowPlayingMovies mockGetNowPlayingMovies;

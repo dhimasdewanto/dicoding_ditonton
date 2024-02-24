@@ -5,12 +5,10 @@ import 'package:dicoding_ditonton/domain/entities/movie.dart';
 import 'package:dicoding_ditonton/domain/usecases/get_top_rated_movies.dart';
 import 'package:dicoding_ditonton/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockGetTopRatedMovies extends Mock implements GetTopRatedMovies {}
 
-@GenerateMocks([GetTopRatedMovies])
 void main() {
   late GetTopRatedMovies mockGetTopRatedMovies;
   late TopRatedMoviesNotifier notifier;
