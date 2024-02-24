@@ -45,7 +45,7 @@ void main() {
   group('search movies', () {
     test('should change state to loading when usecase is called', () async {
       // arrange
-      when(() => mockSearchMovies.execute(tQuery))
+      when(() => mockSearchMovies(tQuery))
           .thenAnswer((_) async => Right(tMovieList));
       // act
       provider.fetchMovieSearch(tQuery);
@@ -56,7 +56,7 @@ void main() {
     test('should change search result data when data is gotten successfully',
         () async {
       // arrange
-      when(() => mockSearchMovies.execute(tQuery))
+      when(() => mockSearchMovies(tQuery))
           .thenAnswer((_) async => Right(tMovieList));
       // act
       await provider.fetchMovieSearch(tQuery);
@@ -68,7 +68,7 @@ void main() {
 
     test('should return error when data is unsuccessful', () async {
       // arrange
-      when(() => mockSearchMovies.execute(tQuery))
+      when(() => mockSearchMovies(tQuery))
           .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchMovieSearch(tQuery);

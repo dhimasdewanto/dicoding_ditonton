@@ -23,7 +23,7 @@ void main() {
     when(() => mockMovieRepository.getMovieDetail(tId))
         .thenAnswer((_) async => const Right(testMovieDetail));
     // act
-    final result = await usecase.execute(tId);
+    final result = await usecase(tId);
     // assert
     expect(result, const Right(testMovieDetail));
   });

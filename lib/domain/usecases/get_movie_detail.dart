@@ -9,7 +9,7 @@ class GetMovieDetail {
 
   GetMovieDetail(this.repository);
 
-  Future<Either<Failure, MovieDetail>> execute(int id) {
+  Future<Either<Failure, MovieDetail>> call(int id) {
     return repository.getMovieDetail(id);
   }
 }

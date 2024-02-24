@@ -21,7 +21,7 @@ class MovieSearchNotifier extends ChangeNotifier {
     _state = RequestState.loading;
     notifyListeners();
 
-    final result = await searchMovies.execute(query);
+    final result = await searchMovies(query);
     result.fold(
       (failure) {
         _message = failure.message;

@@ -18,7 +18,7 @@ void main() {
     when(mockMovieRepository.isAddedToWatchlist(1))
         .thenAnswer((_) async => true);
     // act
-    final result = await usecase.execute(1);
+    final result = await usecase(1);
     // assert
     expect(result, true);
   });

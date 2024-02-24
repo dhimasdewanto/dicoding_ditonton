@@ -41,7 +41,7 @@ class MovieListNotifier extends ChangeNotifier {
     _nowPlayingState = RequestState.loading;
     notifyListeners();
 
-    final result = await getNowPlayingMovies.execute();
+    final result = await getNowPlayingMovies();
     result.fold(
       (failure) {
         _nowPlayingState = RequestState.error;
@@ -60,7 +60,7 @@ class MovieListNotifier extends ChangeNotifier {
     _popularMoviesState = RequestState.loading;
     notifyListeners();
 
-    final result = await getPopularMovies.execute();
+    final result = await getPopularMovies();
     result.fold(
       (failure) {
         _popularMoviesState = RequestState.error;
@@ -79,7 +79,7 @@ class MovieListNotifier extends ChangeNotifier {
     _topRatedMoviesState = RequestState.loading;
     notifyListeners();
 
-    final result = await getTopRatedMovies.execute();
+    final result = await getTopRatedMovies();
     result.fold(
       (failure) {
         _topRatedMoviesState = RequestState.error;

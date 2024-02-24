@@ -58,17 +58,17 @@ void main() {
 
     test('should get data from the usecase', () async {
       // arrange
-      when(() => mockGetNowPlayingMovies.execute())
+      when(() => mockGetNowPlayingMovies())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       provider.fetchNowPlayingMovies();
       // assert
-      verify(() => mockGetNowPlayingMovies.execute());
+      verify(() => mockGetNowPlayingMovies());
     });
 
     test('should change state to Loading when usecase is called', () {
       // arrange
-      when(() => mockGetNowPlayingMovies.execute())
+      when(() => mockGetNowPlayingMovies())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       provider.fetchNowPlayingMovies();
@@ -78,7 +78,7 @@ void main() {
 
     test('should change movies when data is gotten successfully', () async {
       // arrange
-      when(() => mockGetNowPlayingMovies.execute())
+      when(() => mockGetNowPlayingMovies())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       await provider.fetchNowPlayingMovies();
@@ -90,7 +90,7 @@ void main() {
 
     test('should return error when data is unsuccessful', () async {
       // arrange
-      when(() => mockGetNowPlayingMovies.execute())
+      when(() => mockGetNowPlayingMovies())
           .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchNowPlayingMovies();
@@ -104,7 +104,7 @@ void main() {
   group('popular movies', () {
     test('should change state to loading when usecase is called', () async {
       // arrange
-      when(() => mockGetPopularMovies.execute())
+      when(() => mockGetPopularMovies())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       provider.fetchPopularMovies();
@@ -116,7 +116,7 @@ void main() {
     test('should change movies data when data is gotten successfully',
         () async {
       // arrange
-      when(() => mockGetPopularMovies.execute())
+      when(() => mockGetPopularMovies())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       await provider.fetchPopularMovies();
@@ -128,7 +128,7 @@ void main() {
 
     test('should return error when data is unsuccessful', () async {
       // arrange
-      when(() => mockGetPopularMovies.execute())
+      when(() => mockGetPopularMovies())
           .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchPopularMovies();
@@ -142,7 +142,7 @@ void main() {
   group('top rated movies', () {
     test('should change state to loading when usecase is called', () async {
       // arrange
-      when(() => mockGetTopRatedMovies.execute())
+      when(() => mockGetTopRatedMovies())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       provider.fetchTopRatedMovies();
@@ -153,7 +153,7 @@ void main() {
     test('should change movies data when data is gotten successfully',
         () async {
       // arrange
-      when(() => mockGetTopRatedMovies.execute())
+      when(() => mockGetTopRatedMovies())
           .thenAnswer((_) async => Right(tMovieList));
       // act
       await provider.fetchTopRatedMovies();
@@ -165,7 +165,7 @@ void main() {
 
     test('should return error when data is unsuccessful', () async {
       // arrange
-      when(() => mockGetTopRatedMovies.execute())
+      when(() => mockGetTopRatedMovies())
           .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchTopRatedMovies();

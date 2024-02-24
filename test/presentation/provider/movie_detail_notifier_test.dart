@@ -66,9 +66,9 @@ void main() {
   final tMovies = <Movie>[tMovie];
 
   void arrangeUsecase() {
-    when(() => mockGetMovieDetail.execute(tId))
+    when(() => mockGetMovieDetail(tId))
         .thenAnswer((_) async => const Right(testMovieDetail));
-    when(() => mockGetMovieRecommendations.execute(tId))
+    when(() => mockGetMovieRecommendations(tId))
         .thenAnswer((_) async => Right(tMovies));
   }
 
@@ -79,8 +79,8 @@ void main() {
       // act
       await provider.fetchMovieDetail(tId);
       // assert
-      verify(() => mockGetMovieDetail.execute(tId));
-      verify(() => mockGetMovieRecommendations.execute(tId));
+      verify(() => mockGetMovieDetail(tId));
+      verify(() => mockGetMovieRecommendations(tId));
     });
 
     test('should change state to Loading when usecase is called', () {
@@ -123,7 +123,7 @@ void main() {
       // act
       await provider.fetchMovieDetail(tId);
       // assert
-      verify(() => mockGetMovieRecommendations.execute(tId));
+      verify(() => mockGetMovieRecommendations(tId));
       expect(provider.movieRecommendations, tMovies);
     });
 
@@ -140,9 +140,9 @@ void main() {
 
     test('should update error message when request in successful', () async {
       // arrange
-      when(() => mockGetMovieDetail.execute(tId))
+      when(() => mockGetMovieDetail(tId))
           .thenAnswer((_) async => const Right(testMovieDetail));
-      when(() => mockGetMovieRecommendations.execute(tId))
+      when(() => mockGetMovieRecommendations(tId))
           .thenAnswer((_) async => const Left(ServerFailure('Failed')));
       // act
       await provider.fetchMovieDetail(tId);
@@ -155,7 +155,7 @@ void main() {
   group('Watchlist', () {
     test('should get the watchlist status', () async {
       // arrange
-      when(() => mockGetWatchlistStatus.execute(1)).thenAnswer((_) async => true);
+      when(() => mockGetWatchlistStatus(1)).thenAnswer((_) async => true);
       // act
       await provider.loadWatchlistStatus(1);
       // assert
@@ -164,38 +164,38 @@ void main() {
 
     test('should execute save watchlist when function called', () async {
       // arrange
-      when(() => mockSaveWatchlist.execute(testMovieDetail))
+      when(() => mockSaveWatchlist(testMovieDetail))
           .thenAnswer((_) async => const Right('Success'));
-      when(() => mockGetWatchlistStatus.execute(testMovieDetail.id))
+      when(() => mockGetWatchlistStatus(testMovieDetail.id))
           .thenAnswer((_) async => true);
       // act
       await provider.addWatchlist(testMovieDetail);
       // assert
-      verify(() => mockSaveWatchlist.execute(testMovieDetail));
+      verify(() => mockSaveWatchlist(testMovieDetail));
     });
 
     test('should execute remove watchlist when function called', () async {
       // arrange
-      when(() => mockRemoveWatchlist.execute(testMovieDetail))
+      when(() => mockRemoveWatchlist(testMovieDetail))
           .thenAnswer((_) async => const Right('Removed'));
-      when(() => mockGetWatchlistStatus.execute(testMovieDetail.id))
+      when(() => mockGetWatchlistStatus(testMovieDetail.id))
           .thenAnswer((_) async => false);
       // act
       await provider.removeFromWatchlist(testMovieDetail);
       // assert
-      verify(() => mockRemoveWatchlist.execute(testMovieDetail));
+      verify(() => mockRemoveWatchlist(testMovieDetail));
     });
 
     test('should update watchlist status when add watchlist success', () async {
       // arrange
-      when(() => mockSaveWatchlist.execute(testMovieDetail))
+      when(() => mockSaveWatchlist(testMovieDetail))
           .thenAnswer((_) async => const Right('Added to Watchlist'));
-      when(() => mockGetWatchlistStatus.execute(testMovieDetail.id))
+      when(() => mockGetWatchlistStatus(testMovieDetail.id))
           .thenAnswer((_) async => true);
       // act
       await provider.addWatchlist(testMovieDetail);
       // assert
-      verify(() => mockGetWatchlistStatus.execute(testMovieDetail.id));
+      verify(() => mockGetWatchlistStatus(testMovieDetail.id));
       expect(provider.isAddedToWatchlist, true);
       expect(provider.watchlistMessage, 'Added to Watchlist');
       expect(listenerCallCount, 1);
@@ -203,9 +203,9 @@ void main() {
 
     test('should update watchlist message when add watchlist failed', () async {
       // arrange
-      when(() => mockSaveWatchlist.execute(testMovieDetail))
+      when(() => mockSaveWatchlist(testMovieDetail))
           .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
-      when(() => mockGetWatchlistStatus.execute(testMovieDetail.id))
+      when(() => mockGetWatchlistStatus(testMovieDetail.id))
           .thenAnswer((_) async => false);
       // act
       await provider.addWatchlist(testMovieDetail);
@@ -218,9 +218,9 @@ void main() {
   group('on Error', () {
     test('should return error when data is unsuccessful', () async {
       // arrange
-      when(() => mockGetMovieDetail.execute(tId))
+      when(() => mockGetMovieDetail(tId))
           .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
-      when(() => mockGetMovieRecommendations.execute(tId))
+      when(() => mockGetMovieRecommendations(tId))
           .thenAnswer((_) async => Right(tMovies));
       // act
       await provider.fetchMovieDetail(tId);

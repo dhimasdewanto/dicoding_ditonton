@@ -9,7 +9,7 @@ class GetNowPlayingMovies {
 
   GetNowPlayingMovies(this.repository);
 
-  Future<Either<Failure, List<Movie>>> execute() {
+  Future<Either<Failure, List<Movie>>> call() {
     return repository.getNowPlayingMovies();
   }
 }

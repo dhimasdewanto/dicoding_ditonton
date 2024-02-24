@@ -24,7 +24,7 @@ void main() {
     when(() => mockMovieRepository.searchMovies(tQuery))
         .thenAnswer((_) async => Right(tMovies));
     // act
-    final result = await usecase.execute(tQuery);
+    final result = await usecase(tQuery);
     // assert
     expect(result, Right(tMovies));
   });

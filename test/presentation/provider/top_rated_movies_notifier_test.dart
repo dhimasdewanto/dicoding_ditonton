@@ -43,7 +43,7 @@ void main() {
 
   test('should change state to loading when usecase is called', () async {
     // arrange
-    when(() => mockGetTopRatedMovies.execute())
+    when(() => mockGetTopRatedMovies())
         .thenAnswer((_) async => Right(tMovieList));
     // act
     notifier.fetchTopRatedMovies();
@@ -54,7 +54,7 @@ void main() {
 
   test('should change movies data when data is gotten successfully', () async {
     // arrange
-    when(() => mockGetTopRatedMovies.execute())
+    when(() => mockGetTopRatedMovies())
         .thenAnswer((_) async => Right(tMovieList));
     // act
     await notifier.fetchTopRatedMovies();
@@ -66,7 +66,7 @@ void main() {
 
   test('should return error when data is unsuccessful', () async {
     // arrange
-    when(() => mockGetTopRatedMovies.execute())
+    when(() => mockGetTopRatedMovies())
         .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
     // act
     await notifier.fetchTopRatedMovies();

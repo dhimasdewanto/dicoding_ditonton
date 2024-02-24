@@ -21,7 +21,7 @@ class PopularMoviesNotifier extends ChangeNotifier {
     _state = RequestState.loading;
     notifyListeners();
 
-    final result = await getPopularMovies.execute();
+    final result = await getPopularMovies();
 
     result.fold(
       (failure) {

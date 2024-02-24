@@ -48,8 +48,8 @@ class MovieDetailNotifier extends ChangeNotifier {
   Future<void> fetchMovieDetail(int id) async {
     _movieState = RequestState.loading;
     notifyListeners();
-    final detailResult = await getMovieDetail.execute(id);
-    final recommendationResult = await getMovieRecommendations.execute(id);
+    final detailResult = await getMovieDetail(id);
+    final recommendationResult = await getMovieRecommendations(id);
     detailResult.fold(
       (failure) {
         _movieState = RequestState.error;
@@ -80,7 +80,7 @@ class MovieDetailNotifier extends ChangeNotifier {
   String get watchlistMessage => _watchlistMessage;
 
   Future<void> addWatchlist(MovieDetail movie) async {
-    final result = await saveWatchlist.execute(movie);
+    final result = await saveWatchlist(movie);
 
     await result.fold(
       (failure) async {
@@ -95,7 +95,7 @@ class MovieDetailNotifier extends ChangeNotifier {
   }
 
   Future<void> removeFromWatchlist(MovieDetail movie) async {
-    final result = await removeWatchlist.execute(movie);
+    final result = await removeWatchlist(movie);
 
     await result.fold(
       (failure) async {
@@ -110,7 +110,7 @@ class MovieDetailNotifier extends ChangeNotifier {
   }
 
   Future<void> loadWatchlistStatus(int id) async {
-    final result = await getWatchListStatus.execute(id);
+    final result = await getWatchListStatus(id);
     _isAddedtoWatchlist = result;
     notifyListeners();
   }

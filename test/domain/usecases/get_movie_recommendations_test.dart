@@ -25,7 +25,7 @@ void main() {
     when(() => mockMovieRepository.getMovieRecommendations(tId))
         .thenAnswer((_) async => Right(tMovies));
     // act
-    final result = await usecase.execute(tId);
+    final result = await usecase(tId);
     // assert
     expect(result, Right(tMovies));
   });

@@ -21,7 +21,7 @@ void main() {
     when(() => mockMovieRepository.getWatchlistMovies())
         .thenAnswer((_) async => Right(testMovieList));
     // act
-    final result = await usecase.execute();
+    final result = await usecase();
     // assert
     expect(result, Right(testMovieList));
   });

@@ -5,7 +5,7 @@ class GetWatchListStatus {
 
   GetWatchListStatus(this.repository);
 
-  Future<bool> execute(int id) async {
+  Future<bool> call(int id) async {
     return repository.isAddedToWatchlist(id);
   }
 }

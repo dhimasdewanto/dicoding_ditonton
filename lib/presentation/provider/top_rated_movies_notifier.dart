@@ -21,7 +21,7 @@ class TopRatedMoviesNotifier extends ChangeNotifier {
     _state = RequestState.loading;
     notifyListeners();
 
-    final result = await getTopRatedMovies.execute();
+    final result = await getTopRatedMovies();
 
     result.fold(
       (failure) {

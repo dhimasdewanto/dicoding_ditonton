@@ -21,7 +21,7 @@ class WatchlistMovieNotifier extends ChangeNotifier {
     _watchlistState = RequestState.loading;
     notifyListeners();
 
-    final result = await getWatchlistMovies.execute();
+    final result = await getWatchlistMovies();
     result.fold(
       (failure) {
         _watchlistState = RequestState.error;
