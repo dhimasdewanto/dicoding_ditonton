@@ -50,20 +50,20 @@ class _HomeTvPageState extends State<HomeTvPage> {
               accountEmail: Text('ditonton@dicoding.com'),
             ),
             ListTile(
-              leading: const Icon(Icons.movie),
+              leading: const Icon(Icons.tv),
+              title: const Text('TV Shows'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.movie_outlined),
               title: const Text('Movies'),
               onTap: () {
                 Navigator.pushReplacementNamed(
                   context,
                   HomeMoviePage.routeName,
                 );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.tv),
-              title: const Text('TV Shows'),
-              onTap: () {
-                Navigator.pop(context);
               },
             ),
             ListTile(

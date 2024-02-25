@@ -50,13 +50,6 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               accountEmail: Text('ditonton@dicoding.com'),
             ),
             ListTile(
-              leading: const Icon(Icons.movie),
-              title: const Text('Movies'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
               leading: const Icon(Icons.tv),
               title: const Text('TV Shows'),
               onTap: () {
@@ -64,6 +57,13 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                   context,
                   HomeTvPage.routeName,
                 );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.movie_outlined),
+              title: const Text('Movies'),
+              onTap: () {
+                Navigator.pop(context);
               },
             ),
             ListTile(
