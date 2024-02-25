@@ -6,22 +6,22 @@ import 'package:provider/provider.dart';
 
 import 'package:dicoding_ditonton/common/state_enum.dart';
 import 'package:dicoding_ditonton/domain/entities/movie.dart';
-import 'package:dicoding_ditonton/presentation/pages/movie_detail_page.dart';
-import 'package:dicoding_ditonton/presentation/provider/movie/movie_detail_notifier.dart';
+import 'package:dicoding_ditonton/presentation/pages/tv_detail_page.dart';
+import 'package:dicoding_ditonton/presentation/provider/tv/tv_detail_notifier.dart';
 
 import '../../dummy_data/dummy_objects.dart';
-import 'movie_detail_page_test.mocks.dart';
+import 'tv_detail_page_test.mocks.dart';
 
-@GenerateMocks([MovieDetailNotifier])
+@GenerateMocks([TvDetailNotifier])
 void main() {
-  late MovieDetailNotifier mockNotifier;
+  late TvDetailNotifier mockNotifier;
 
   setUp(() {
-    mockNotifier = MockMovieDetailNotifier();
+    mockNotifier = MockTvDetailNotifier();
   });
 
   Widget makeTestableWidget(Widget body) {
-    return ChangeNotifierProvider<MovieDetailNotifier>.value(
+    return ChangeNotifierProvider<TvDetailNotifier>.value(
       value: mockNotifier,
       child: MaterialApp(
         home: body,
@@ -40,7 +40,7 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    await tester.pumpWidget(makeTestableWidget(const TvDetailPage(id: 1)));
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -56,7 +56,7 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    await tester.pumpWidget(makeTestableWidget(const TvDetailPage(id: 1)));
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -73,7 +73,7 @@ void main() {
 
     final watchlistButton = find.byType(ElevatedButton);
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    await tester.pumpWidget(makeTestableWidget(const TvDetailPage(id: 1)));
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 
@@ -96,7 +96,7 @@ void main() {
 
     final watchlistButton = find.byType(ElevatedButton);
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    await tester.pumpWidget(makeTestableWidget(const TvDetailPage(id: 1)));
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 
