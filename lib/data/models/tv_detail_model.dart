@@ -88,6 +88,7 @@ class TvDetailModel extends Equatable {
       title: name,
       voteAverage: voteAverage,
       voteCount: voteCount,
+      popularity: popularity,
     );
   }
 

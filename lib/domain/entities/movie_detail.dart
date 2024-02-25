@@ -19,6 +19,7 @@ class MovieDetail extends Equatable {
     required this.title,
     required this.voteAverage,
     required this.voteCount,
+    required this.popularity,
   });
 
   final ShowType type;
@@ -34,6 +35,7 @@ class MovieDetail extends Equatable {
   final String title;
   final double voteAverage;
   final int voteCount;
+  final double popularity;
 
   @override
   List<Object?> get props => [
@@ -59,7 +61,7 @@ class MovieDetail extends Equatable {
         id: id,
         originalTitle: originalTitle,
         overview: overview,
-        popularity: 0, // TODO(dev): Add popularity in movie detail.
+        popularity: popularity,
         posterPath: posterPath,
         releaseDate: releaseDate,
         title: title,
