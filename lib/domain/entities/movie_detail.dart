@@ -1,10 +1,12 @@
-import 'package:dicoding_ditonton/domain/entities/movie.dart';
+import 'movie.dart';
+import '../enums/show_type.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/genre.dart';
 
 class MovieDetail extends Equatable {
   const MovieDetail({
+    required this.type,
     required this.adult,
     required this.backdropPath,
     required this.genres,
@@ -19,6 +21,7 @@ class MovieDetail extends Equatable {
     required this.voteCount,
   });
 
+  final ShowType type;
   final bool adult;
   final String? backdropPath;
   final List<Genre> genres;
@@ -34,6 +37,7 @@ class MovieDetail extends Equatable {
 
   @override
   List<Object?> get props => [
+        type,
         adult,
         backdropPath,
         genres,
@@ -48,6 +52,7 @@ class MovieDetail extends Equatable {
       ];
 
   Movie toMovie() => Movie(
+        type: type,
         adult: adult,
         backdropPath: backdropPath,
         genreIds: genres.map((genre) => genre.id).toList(),

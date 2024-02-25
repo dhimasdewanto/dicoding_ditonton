@@ -1,3 +1,4 @@
+import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 import 'package:dicoding_ditonton/domain/usecases/tv/get_on_the_air_tv.dart';
 import 'package:dicoding_ditonton/presentation/provider/tv/on_the_air_tv_notifier.dart';
 import 'package:fpdart/fpdart.dart';
@@ -24,6 +25,7 @@ void main() {
   });
 
   const tMovie = Movie(
+    type: ShowType.tv,
     adult: false,
     backdropPath: 'backdropPath',
     genreIds: [1, 2, 3],

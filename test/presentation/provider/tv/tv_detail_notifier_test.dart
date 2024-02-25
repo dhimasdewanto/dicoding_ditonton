@@ -1,3 +1,4 @@
+import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 import 'package:dicoding_ditonton/domain/usecases/tv/get_tv_detail.dart';
 import 'package:dicoding_ditonton/domain/usecases/tv/get_tv_recommendations.dart';
 import 'package:dicoding_ditonton/presentation/provider/tv/tv_detail_notifier.dart';
@@ -49,6 +50,7 @@ void main() {
   const tId = 1;
 
   const tMovie = Movie(
+    type: ShowType.tv,
     adult: false,
     backdropPath: 'backdropPath',
     genreIds: [1, 2, 3],

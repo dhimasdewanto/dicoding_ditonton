@@ -1,3 +1,4 @@
+import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:dicoding_ditonton/common/failure.dart';
 import 'package:dicoding_ditonton/common/state_enum.dart';
@@ -24,6 +25,7 @@ void main() {
   });
 
   const tMovie = Movie(
+    type: ShowType.movie,
     adult: false,
     backdropPath: 'backdropPath',
     genreIds: [1, 2, 3],

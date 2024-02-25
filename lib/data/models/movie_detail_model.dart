@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../data/models/genre_model.dart';
 import '../../domain/entities/movie_detail.dart';
+import '../../domain/enums/show_type.dart';
 
 class MovieDetailResponse extends Equatable {
   const MovieDetailResponse({
@@ -102,6 +103,7 @@ class MovieDetailResponse extends Equatable {
 
   MovieDetail toEntity() {
     return MovieDetail(
+      type: ShowType.movie,
       adult: adult,
       backdropPath: backdropPath,
       genres: genres.map((genre) => genre.toEntity()).toList(),

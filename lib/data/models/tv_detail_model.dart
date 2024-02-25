@@ -1,3 +1,4 @@
+import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/movie_detail.dart';
@@ -74,6 +75,7 @@ class TvDetailModel extends Equatable {
 
   MovieDetail toEntity() {
     return MovieDetail(
+      type: ShowType.tv,
       adult: adult,
       backdropPath: backdropPath,
       genres: genres.map((genre) => genre.toEntity()).toList(),

@@ -1,3 +1,4 @@
+import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:dicoding_ditonton/common/failure.dart';
 import 'package:dicoding_ditonton/common/state_enum.dart';
@@ -24,6 +25,7 @@ void main() {
   });
 
   const tMovieModel = Movie(
+    type: ShowType.movie,
     adult: false,
     backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
     genreIds: [14, 28],

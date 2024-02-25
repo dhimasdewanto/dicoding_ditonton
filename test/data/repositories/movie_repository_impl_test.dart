@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:dicoding_ditonton/data/models/genre_model.dart';
 import 'package:dicoding_ditonton/data/models/movie_detail_model.dart';
@@ -46,6 +47,7 @@ void main() {
   );
 
   const tMovie = Movie(
+    type: ShowType.movie,
     adult: false,
     backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
     genreIds: [14, 28],

@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/movie.dart';
+import '../../domain/enums/show_type.dart';
 
 /// Same as `MovieModel`, but for TV (for some reason it has some different fields).
 class TvModel extends Equatable {
@@ -64,6 +65,7 @@ class TvModel extends Equatable {
 
   Movie toEntity() {
     return Movie(
+      type: ShowType.tv,
       adult: adult,
       backdropPath: backdropPath,
       genreIds: genreIds,

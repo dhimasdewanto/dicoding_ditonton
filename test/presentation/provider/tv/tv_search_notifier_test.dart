@@ -1,3 +1,4 @@
+import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 import 'package:dicoding_ditonton/domain/usecases/tv/search_tv.dart';
 import 'package:dicoding_ditonton/presentation/provider/tv/tv_search_notifier.dart';
 import 'package:fpdart/fpdart.dart';
@@ -24,6 +25,7 @@ void main() {
   });
 
   const tMovieModel = Movie(
+    type: ShowType.tv,
     adult: false,
     backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
     genreIds: [14, 28],

@@ -1,3 +1,4 @@
+import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:dicoding_ditonton/domain/entities/movie.dart';
 import 'package:dicoding_ditonton/domain/usecases/movie/get_movie_detail.dart';
@@ -49,6 +50,7 @@ void main() {
   const tId = 1;
 
   const tMovie = Movie(
+    type: ShowType.movie,
     adult: false,
     backdropPath: 'backdropPath',
     genreIds: [1, 2, 3],

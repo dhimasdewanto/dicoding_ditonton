@@ -2,8 +2,10 @@ import 'package:dicoding_ditonton/data/models/movie_table.dart';
 import 'package:dicoding_ditonton/domain/entities/genre.dart';
 import 'package:dicoding_ditonton/domain/entities/movie.dart';
 import 'package:dicoding_ditonton/domain/entities/movie_detail.dart';
+import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 
 const testMovie = Movie(
+  type: ShowType.movie,
   adult: false,
   backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
   genreIds: [14, 28],
@@ -21,6 +23,7 @@ const testMovie = Movie(
 );
 
 const testMovie2 = Movie(
+  type: ShowType.movie,
   adult: false,
   backdropPath: 'backdropPath',
   genreIds: [14, 28],
@@ -39,6 +42,7 @@ const testMovie2 = Movie(
 final testMovieList = [testMovie];
 
 const testMovieDetail = MovieDetail(
+  type: ShowType.movie,
   adult: false,
   backdropPath: 'backdropPath',
   genres: [Genre(id: 1, name: 'Action')],
@@ -54,6 +58,7 @@ const testMovieDetail = MovieDetail(
 );
 
 const testWatchlistMovie = Movie.watchlist(
+  type: ShowType.movie,
   id: 1,
   title: 'title',
   posterPath: 'posterPath',
@@ -61,6 +66,7 @@ const testWatchlistMovie = Movie.watchlist(
 );
 
 const testMovieTable = MovieTable(
+  type: "movie",
   id: 1,
   title: 'title',
   posterPath: 'posterPath',
@@ -69,6 +75,7 @@ const testMovieTable = MovieTable(
 
 final testMovieMap = {
   'id': 1,
+  'type': 'movie',
   'overview': 'overview',
   'posterPath': 'posterPath',
   'title': 'title',

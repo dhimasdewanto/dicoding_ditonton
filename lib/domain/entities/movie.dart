@@ -1,7 +1,10 @@
 import 'package:equatable/equatable.dart';
 
+import '../enums/show_type.dart';
+
 class Movie extends Equatable {
   const Movie({
+    required this.type,
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
@@ -18,6 +21,7 @@ class Movie extends Equatable {
   });
 
   const Movie.watchlist({
+    required this.type,
     required this.id,
     required this.overview,
     required this.posterPath,
@@ -33,6 +37,7 @@ class Movie extends Equatable {
     this.voteCount,
   });
 
+  final ShowType type;
   final bool? adult;
   final String? backdropPath;
   final List<int>? genreIds;
@@ -49,6 +54,7 @@ class Movie extends Equatable {
 
   @override
   List<Object?> get props => [
+        type,
         adult,
         backdropPath,
         genreIds,

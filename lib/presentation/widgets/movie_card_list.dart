@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 import '../../common/constants.dart';
 import '../../domain/entities/movie.dart';
+import '../../domain/enums/show_type.dart';
 import '../../presentation/pages/movie_detail_page.dart';
+import '../pages/tv_detail_page.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
@@ -16,6 +18,14 @@ class MovieCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
         onTap: () {
+          if (movie.type == ShowType.tv) {
+            Navigator.pushNamed(
+              context,
+              TvDetailPage.routeName,
+              arguments: movie.id,
+            );
+            return;
+          }
           Navigator.pushNamed(
             context,
             MovieDetailPage.routeName,
