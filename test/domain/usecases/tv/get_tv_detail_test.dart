@@ -22,10 +22,10 @@ void main() {
   test('Should get detail of tv show from the repository', () async {
     // arrange
     when(() => mockRepo.getDetail(tId))
-        .thenAnswer((_) async => const Right(testMovieDetail));
+        .thenAnswer((_) async => const Right(testTvDetail));
     // act
     final result = await usecase(tId);
     // assert
-    expect(result, const Right(testMovieDetail));
+    expect(result, const Right(testTvDetail));
   });
 }

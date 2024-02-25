@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dicoding_ditonton/domain/entities/season.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
@@ -192,7 +193,7 @@ void main() {
 
   group('Get Detail of TV Show', () {
     const tId = 1;
-    final tMovieResponse = TvDetailModel(
+    final tTvResponse = TvDetailModel(
       adult: false,
       backdropPath: 'backdropPath',
       genres: const [GenreModel(id: 1, name: 'Action')],
@@ -207,21 +208,16 @@ void main() {
       tagline: 'Tagline',
       voteAverage: 1,
       voteCount: 1,
-      // createdBy: const [],
       episodeRunTime: const [],
       firstAirDate: DateTime(2000),
       inProduction: false,
       languages: const [],
       lastAirDate: DateTime(2000),
-      // lastEpisodeToAir: null,
       name: '',
       nextEpisodeToAir: null,
-      // networks: const [],
       numberOfEpisodes: 3,
       numberOfSeasons: 3,
       originCountry: const [],
-      // productionCompanies: const [],
-      // productionCountries: const [],
       seasons: [
         SeasonModel(
           airDate: DateTime.now(),
@@ -234,7 +230,6 @@ void main() {
           voteAverage: 5,
         ),
       ],
-      // spokenLanguages: const [],
       type: '',
     );
 
@@ -243,14 +238,16 @@ void main() {
         () async {
       // arrange
       when(() => mockRemoteDataSource.getDetail(tId))
-          .thenAnswer((_) async => tMovieResponse);
+          .thenAnswer((_) async => tTvResponse);
       // act
       final result = await repository.getDetail(tId);
       // assert
       verify(() => mockRemoteDataSource.getDetail(tId));
 
       final id = result.map((res) => res.id).fold((l) => null, (r) => r);
+      final seasons = result.map((res) => res.seasons).fold((l) => <Season>[], (r) => r);
       expect(id, testTvDetail.id);
+      expect(seasons.firstOrNull?.id, testTvDetail.seasons.firstOrNull?.id);
     });
 
     test(
