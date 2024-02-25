@@ -1,18 +1,20 @@
 import 'dart:io';
 
+import 'package:flutter_test/flutter_test.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:mocktail/mocktail.dart';
+
+import 'package:dicoding_ditonton/common/exception.dart';
+import 'package:dicoding_ditonton/common/failure.dart';
 import 'package:dicoding_ditonton/data/datasources/tv_remote_data_source.dart';
+import 'package:dicoding_ditonton/data/models/genre_model.dart';
+import 'package:dicoding_ditonton/data/models/season_model.dart';
 import 'package:dicoding_ditonton/data/models/tv_detail_model.dart';
 import 'package:dicoding_ditonton/data/models/tv_model.dart';
 import 'package:dicoding_ditonton/data/repositories/tv_repository_impl.dart';
+import 'package:dicoding_ditonton/domain/entities/movie.dart';
 import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 import 'package:dicoding_ditonton/domain/repositories/tv_repository.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:dicoding_ditonton/data/models/genre_model.dart';
-import 'package:dicoding_ditonton/common/exception.dart';
-import 'package:dicoding_ditonton/common/failure.dart';
-import 'package:dicoding_ditonton/domain/entities/movie.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 
 import '../../dummy_data/dummy_objects.dart';
 import '../../helpers/test_helper.dart';
@@ -220,7 +222,18 @@ void main() {
       originCountry: const [],
       // productionCompanies: const [],
       // productionCountries: const [],
-      seasons: const [],
+      seasons: [
+        SeasonModel(
+          airDate: DateTime.now(),
+          episodeCount: 5,
+          id: 123,
+          name: "Season 1",
+          overview: "",
+          posterPath: "",
+          seasonNumber: 1,
+          voteAverage: 5,
+        ),
+      ],
       // spokenLanguages: const [],
       type: '',
     );
@@ -237,7 +250,7 @@ void main() {
       verify(() => mockRemoteDataSource.getDetail(tId));
 
       final id = result.map((res) => res.id).fold((l) => null, (r) => r);
-      expect(id, testMovieDetail.id);
+      expect(id, testTvDetail.id);
     });
 
     test(

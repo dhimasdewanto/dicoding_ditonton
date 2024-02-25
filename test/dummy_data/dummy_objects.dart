@@ -2,6 +2,7 @@ import 'package:dicoding_ditonton/data/models/movie_table.dart';
 import 'package:dicoding_ditonton/domain/entities/genre.dart';
 import 'package:dicoding_ditonton/domain/entities/movie.dart';
 import 'package:dicoding_ditonton/domain/entities/movie_detail.dart';
+import 'package:dicoding_ditonton/domain/entities/season.dart';
 import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 
 const testMovie = Movie(
@@ -55,6 +56,35 @@ const testMovieDetail = MovieDetail(
   voteCount: 1,
   popularity: 100,
   seasons: [],
+);
+
+const testTvDetail = MovieDetail(
+  type: ShowType.tv,
+  adult: false,
+  backdropPath: 'backdropPath',
+  genres: [Genre(id: 1, name: 'Action')],
+  id: 1,
+  originalTitle: 'originalTitle',
+  overview: 'overview',
+  posterPath: 'posterPath',
+  releaseDate: 'releaseDate',
+  runtime: 120,
+  title: 'title',
+  voteAverage: 1,
+  voteCount: 1,
+  popularity: 100,
+  seasons: [
+    Season(
+      airDate: null,
+      episodeCount: 5,
+      id: 123,
+      name: "Season",
+      overview: "",
+      posterPath: "",
+      seasonNumber: 5,
+      voteAverage: 5,
+    ),
+  ],
 );
 
 const testWatchlistMovie = Movie.watchlist(
