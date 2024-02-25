@@ -9,6 +9,7 @@ import '../../domain/entities/genre.dart';
 import '../../domain/entities/movie.dart';
 import '../../domain/entities/movie_detail.dart';
 import '../provider/tv/tv_detail_notifier.dart';
+import '../widgets/season_list_tile.dart';
 
 class TvDetailPage extends StatefulWidget {
   static const routeName = '/detail-tv';
@@ -186,6 +187,19 @@ class DetailContent extends StatelessWidget {
                               movie.overview,
                             ),
                             const SizedBox(height: 16),
+                            if (movie.seasons.isNotEmpty) ...{
+                              Text(
+                                'Seasons',
+                                style: kHeading6,
+                              ),
+                              ...movie.seasons.map(
+                                (season) => SeasonListTile(
+                                  index: movie.seasons.indexOf(season),
+                                  season: season,
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                            },
                             Text(
                               'Recommendations',
                               style: kHeading6,
