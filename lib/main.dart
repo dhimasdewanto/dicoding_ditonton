@@ -9,9 +9,14 @@ import 'presentation/pages/about_page.dart';
 import 'presentation/pages/home_movie_page.dart';
 import 'presentation/pages/home_tv_page.dart';
 import 'presentation/pages/movie_detail_page.dart';
+import 'presentation/pages/on_the_air_tv_page.dart';
 import 'presentation/pages/popular_movies_page.dart';
+import 'presentation/pages/popular_tv_page.dart';
 import 'presentation/pages/search_page.dart';
+import 'presentation/pages/search_tv_page.dart';
 import 'presentation/pages/top_rated_movies_page.dart';
+import 'presentation/pages/top_rated_tv_page.dart';
+import 'presentation/pages/tv_detail_page.dart';
 import 'presentation/pages/watchlist_movies_page.dart';
 import 'presentation/provider/movie/movie_detail_notifier.dart';
 import 'presentation/provider/movie/movie_list_notifier.dart';
@@ -71,13 +76,25 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(
                 builder: (_) => const HomeTvPage(),
               );
+            case OnTheAirTvPage.routeName:
+              return CupertinoPageRoute(
+                builder: (_) => const OnTheAirTvPage(),
+              );
             case PopularMoviesPage.routeName:
               return CupertinoPageRoute(
                 builder: (_) => const PopularMoviesPage(),
               );
+            case PopularTvPage.routeName:
+              return CupertinoPageRoute(
+                builder: (_) => const PopularTvPage(),
+              );
             case TopRatedMoviesPage.routeName:
               return CupertinoPageRoute(
                 builder: (_) => const TopRatedMoviesPage(),
+              );
+            case TopRatedTvPage.routeName:
+              return CupertinoPageRoute(
+                builder: (_) => const TopRatedTvPage(),
               );
             case MovieDetailPage.routeName:
               final id = settings.arguments as int;
@@ -85,9 +102,19 @@ class MyApp extends StatelessWidget {
                 builder: (_) => MovieDetailPage(id: id),
                 settings: settings,
               );
+            case TvDetailPage.routeName:
+              final id = settings.arguments as int;
+              return MaterialPageRoute(
+                builder: (_) => TvDetailPage(id: id),
+                settings: settings,
+              );
             case SearchPage.routeName:
               return CupertinoPageRoute(
                 builder: (_) => const SearchPage(),
+              );
+            case SearchTvPage.routeName:
+              return CupertinoPageRoute(
+                builder: (_) => const SearchTvPage(),
               );
             case WatchlistMoviesPage.routeName:
               return MaterialPageRoute(

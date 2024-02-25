@@ -1,3 +1,4 @@
+import 'package:dicoding_ditonton/domain/entities/movie.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/genre.dart';
@@ -45,4 +46,20 @@ class MovieDetail extends Equatable {
         voteAverage,
         voteCount,
       ];
+
+  Movie toMovie() => Movie(
+        adult: adult,
+        backdropPath: backdropPath,
+        genreIds: genres.map((genre) => genre.id).toList(),
+        id: id,
+        originalTitle: originalTitle,
+        overview: overview,
+        popularity: 0, // TODO(dev): Add popularity in movie detail.
+        posterPath: posterPath,
+        releaseDate: releaseDate,
+        title: title,
+        video: false, // TODO(dev): Add video boolean in movie detail.
+        voteAverage: voteAverage,
+        voteCount: voteCount,
+      );
 }
