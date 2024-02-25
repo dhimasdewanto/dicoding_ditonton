@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/state_enum.dart';
-import '../../presentation/provider/popular_movies_notifier.dart';
+import '../provider/movie/popular_movies_notifier.dart';
 import '../../presentation/widgets/movie_card_list.dart';
 
 class PopularMoviesPage extends StatefulWidget {

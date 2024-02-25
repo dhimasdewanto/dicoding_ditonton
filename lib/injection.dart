@@ -16,12 +16,12 @@ import 'domain/usecases/movie/get_watchlist_status.dart';
 import 'domain/usecases/movie/remove_watchlist.dart';
 import 'domain/usecases/movie/save_watchlist.dart';
 import 'domain/usecases/movie/search_movies.dart';
-import 'presentation/provider/movie_detail_notifier.dart';
-import 'presentation/provider/movie_list_notifier.dart';
-import 'presentation/provider/movie_search_notifier.dart';
-import 'presentation/provider/popular_movies_notifier.dart';
-import 'presentation/provider/top_rated_movies_notifier.dart';
-import 'presentation/provider/watchlist_movie_notifier.dart';
+import 'presentation/provider/movie/movie_detail_notifier.dart';
+import 'presentation/provider/movie/movie_list_notifier.dart';
+import 'presentation/provider/movie/movie_search_notifier.dart';
+import 'presentation/provider/movie/popular_movies_notifier.dart';
+import 'presentation/provider/movie/top_rated_movies_notifier.dart';
+import 'presentation/provider/watchlist/watchlist_movie_notifier.dart';
 
 final locator = GetIt.instance;
 

@@ -13,12 +13,12 @@ import 'presentation/pages/popular_movies_page.dart';
 import 'presentation/pages/search_page.dart';
 import 'presentation/pages/top_rated_movies_page.dart';
 import 'presentation/pages/watchlist_movies_page.dart';
-import 'presentation/provider/movie_detail_notifier.dart';
-import 'presentation/provider/movie_list_notifier.dart';
-import 'presentation/provider/movie_search_notifier.dart';
-import 'presentation/provider/popular_movies_notifier.dart';
-import 'presentation/provider/top_rated_movies_notifier.dart';
-import 'presentation/provider/watchlist_movie_notifier.dart';
+import 'presentation/provider/movie/movie_detail_notifier.dart';
+import 'presentation/provider/movie/movie_list_notifier.dart';
+import 'presentation/provider/movie/movie_search_notifier.dart';
+import 'presentation/provider/movie/popular_movies_notifier.dart';
+import 'presentation/provider/movie/top_rated_movies_notifier.dart';
+import 'presentation/provider/watchlist/watchlist_movie_notifier.dart';
 
 void main() {
   di.init();

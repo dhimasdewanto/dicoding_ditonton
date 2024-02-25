@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../common/state_enum.dart';
 import '../../common/utils.dart';
-import '../../presentation/provider/watchlist_movie_notifier.dart';
+import '../provider/watchlist/watchlist_movie_notifier.dart';
 import '../../presentation/widgets/movie_card_list.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {

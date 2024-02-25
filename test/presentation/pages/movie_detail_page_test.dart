@@ -1,7 +1,7 @@
 import 'package:dicoding_ditonton/common/state_enum.dart';
 import 'package:dicoding_ditonton/domain/entities/movie.dart';
 import 'package:dicoding_ditonton/presentation/pages/movie_detail_page.dart';
-import 'package:dicoding_ditonton/presentation/provider/movie_detail_notifier.dart';
+import 'package:dicoding_ditonton/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

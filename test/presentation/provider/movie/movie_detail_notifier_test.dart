@@ -6,12 +6,12 @@ import 'package:dicoding_ditonton/common/failure.dart';
 import 'package:dicoding_ditonton/domain/usecases/movie/get_watchlist_status.dart';
 import 'package:dicoding_ditonton/domain/usecases/movie/remove_watchlist.dart';
 import 'package:dicoding_ditonton/domain/usecases/movie/save_watchlist.dart';
-import 'package:dicoding_ditonton/presentation/provider/movie_detail_notifier.dart';
+import 'package:dicoding_ditonton/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:dicoding_ditonton/common/state_enum.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../dummy_data/dummy_objects.dart';
+import '../../../dummy_data/dummy_objects.dart';
 
 class MockV2GetMovieDetail extends Mock implements GetMovieDetail {}
 class MockV2GetMovieRecommendations extends Mock implements GetMovieRecommendations {}

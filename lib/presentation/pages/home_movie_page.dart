@@ -11,7 +11,7 @@ import '../../presentation/pages/popular_movies_page.dart';
 import '../../presentation/pages/search_page.dart';
 import '../../presentation/pages/top_rated_movies_page.dart';
 import '../../presentation/pages/watchlist_movies_page.dart';
-import '../../presentation/provider/movie_list_notifier.dart';
+import '../provider/movie/movie_list_notifier.dart';
 import 'home_tv_page.dart';
 
 class HomeMoviePage extends StatefulWidget {

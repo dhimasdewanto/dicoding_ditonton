@@ -1,6 +1,6 @@
-import '../../common/state_enum.dart';
-import '../../domain/entities/movie.dart';
-import '../../domain/usecases/movie/get_popular_movies.dart';
+import '../../../common/state_enum.dart';
+import '../../../domain/entities/movie.dart';
+import '../../../domain/usecases/movie/get_popular_movies.dart';
 import 'package:flutter/foundation.dart';
 
 class PopularMoviesNotifier extends ChangeNotifier {

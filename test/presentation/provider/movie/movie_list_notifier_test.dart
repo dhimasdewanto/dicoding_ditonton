@@ -4,7 +4,7 @@ import 'package:dicoding_ditonton/domain/usecases/movie/get_now_playing_movies.d
 import 'package:dicoding_ditonton/common/failure.dart';
 import 'package:dicoding_ditonton/domain/usecases/movie/get_popular_movies.dart';
 import 'package:dicoding_ditonton/domain/usecases/movie/get_top_rated_movies.dart';
-import 'package:dicoding_ditonton/presentation/provider/movie_list_notifier.dart';
+import 'package:dicoding_ditonton/presentation/provider/movie/movie_list_notifier.dart';
 import 'package:dicoding_ditonton/common/state_enum.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

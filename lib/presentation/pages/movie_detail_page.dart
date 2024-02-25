@@ -8,7 +8,7 @@ import '../../common/state_enum.dart';
 import '../../domain/entities/genre.dart';
 import '../../domain/entities/movie.dart';
 import '../../domain/entities/movie_detail.dart';
-import '../../presentation/provider/movie_detail_notifier.dart';
+import '../provider/movie/movie_detail_notifier.dart';
 
 class MovieDetailPage extends StatefulWidget {
   static const routeName = '/detail';

@@ -10,7 +10,7 @@ import 'package:dicoding_ditonton/common/state_enum.dart' as _i4;
 import 'package:dicoding_ditonton/domain/entities/movie.dart' as _i5;
 import 'package:dicoding_ditonton/domain/usecases/movie/get_popular_movies.dart'
     as _i2;
-import 'package:dicoding_ditonton/presentation/provider/popular_movies_notifier.dart'
+import 'package:dicoding_ditonton/presentation/provider/movie/popular_movies_notifier.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i6;
