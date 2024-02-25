@@ -23,6 +23,12 @@ import 'presentation/provider/movie/movie_list_notifier.dart';
 import 'presentation/provider/movie/movie_search_notifier.dart';
 import 'presentation/provider/movie/popular_movies_notifier.dart';
 import 'presentation/provider/movie/top_rated_movies_notifier.dart';
+import 'presentation/provider/tv/on_the_air_tv_notifier.dart';
+import 'presentation/provider/tv/popular_tv_notifier.dart';
+import 'presentation/provider/tv/top_rated_tv_notifier.dart';
+import 'presentation/provider/tv/tv_detail_notifier.dart';
+import 'presentation/provider/tv/tv_list_notifier.dart';
+import 'presentation/provider/tv/tv_search_notifier.dart';
 import 'presentation/provider/watchlist/watchlist_movie_notifier.dart';
 
 void main() {
@@ -37,6 +43,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        /// Movie
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieListNotifier>(),
         ),
@@ -52,6 +59,28 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<PopularMoviesNotifier>(),
         ),
+
+        /// TV
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TvListNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TvDetailNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TvSearchNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<OnTheAirTvNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TopRatedTvNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<PopularTvNotifier>(),
+        ),
+
+        /// Watchlist
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistMovieNotifier>(),
         ),

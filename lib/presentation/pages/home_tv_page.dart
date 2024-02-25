@@ -8,11 +8,11 @@ import '../../domain/entities/movie.dart';
 import '../provider/tv/tv_list_notifier.dart';
 import 'about_page.dart';
 import 'home_movie_page.dart';
-import 'movie_detail_page.dart';
 import 'on_the_air_tv_page.dart';
 import 'popular_tv_page.dart';
 import 'search_tv_page.dart';
 import 'top_rated_tv_page.dart';
+import 'tv_detail_page.dart';
 import 'watchlist_movies_page.dart';
 
 class HomeTvPage extends StatefulWidget {
@@ -199,7 +199,7 @@ class MovieList extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  MovieDetailPage.routeName,
+                  TvDetailPage.routeName,
                   arguments: movie.id,
                 );
               },
