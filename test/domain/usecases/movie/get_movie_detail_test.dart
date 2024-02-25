@@ -12,7 +12,7 @@ void main() {
   late MovieRepository mockMovieRepository;
 
   setUp(() {
-    mockMovieRepository = MockV2MovieRepository();
+    mockMovieRepository = MockMovieRepository();
     usecase = GetMovieDetail(mockMovieRepository);
   });
 

@@ -17,7 +17,7 @@ void main() {
   late http.Client mockHttpClient;
 
   setUp(() {
-    mockHttpClient = MockV2HttpClient();
+    mockHttpClient = MockHttpClient();
     dataSource = TvRemoteDataSourceImpl(client: mockHttpClient);
     registerFallbackValue(FakeUri());
   });

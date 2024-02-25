@@ -15,7 +15,7 @@ void main() {
   late MovieLocalDataSource mockLocalDataSource;
 
   setUp(() {
-    mockLocalDataSource = MockV2MovieLocalDataSource();
+    mockLocalDataSource = MockMovieLocalDataSource();
     repository = WatchlistRepositoryImpl(
       localDataSource: mockLocalDataSource,
     );
