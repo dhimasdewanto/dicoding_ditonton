@@ -76,7 +76,6 @@ class TvModel extends Equatable {
       posterPath: posterPath,
       releaseDate: releaseDate,
       title: name,
-      video: null,
       voteAverage: voteAverage,
       voteCount: voteCount,
     );

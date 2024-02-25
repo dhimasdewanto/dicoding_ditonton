@@ -65,7 +65,6 @@ class MovieDetail extends Equatable {
         posterPath: posterPath,
         releaseDate: releaseDate,
         title: title,
-        video: false, // TODO(dev): Add video boolean in movie detail.
         voteAverage: voteAverage,
         voteCount: voteCount,
       );

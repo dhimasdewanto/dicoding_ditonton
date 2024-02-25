@@ -79,7 +79,6 @@ class MovieModel extends Equatable {
       posterPath: posterPath,
       releaseDate: releaseDate,
       title: title,
-      video: video,
       voteAverage: voteAverage,
       voteCount: voteCount,
     );
