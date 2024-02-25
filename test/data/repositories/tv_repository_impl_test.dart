@@ -220,7 +220,7 @@ void main() {
       originCountry: const [],
       // productionCompanies: const [],
       // productionCountries: const [],
-      // seasons: const [],
+      seasons: const [],
       // spokenLanguages: const [],
       type: '',
     );

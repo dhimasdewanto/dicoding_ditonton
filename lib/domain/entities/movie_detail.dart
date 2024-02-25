@@ -3,6 +3,7 @@ import '../enums/show_type.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/genre.dart';
+import 'season.dart';
 
 class MovieDetail extends Equatable {
   const MovieDetail({
@@ -20,6 +21,7 @@ class MovieDetail extends Equatable {
     required this.voteAverage,
     required this.voteCount,
     required this.popularity,
+    required this.seasons,
   });
 
   final ShowType type;
@@ -36,6 +38,7 @@ class MovieDetail extends Equatable {
   final double voteAverage;
   final int voteCount;
   final double popularity;
+  final List<Season> seasons;
 
   @override
   List<Object?> get props => [
@@ -51,6 +54,7 @@ class MovieDetail extends Equatable {
         title,
         voteAverage,
         voteCount,
+        seasons,
       ];
 
   Movie toMovie() => Movie(

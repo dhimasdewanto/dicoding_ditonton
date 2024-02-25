@@ -1,8 +1,9 @@
-import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/movie_detail.dart';
+import '../../domain/enums/show_type.dart';
 import 'genre_model.dart';
+import 'season_model.dart';
 
 class TvDetailModel extends Equatable {
   final bool adult;
@@ -30,7 +31,7 @@ class TvDetailModel extends Equatable {
   final String posterPath;
   // final List<Network> productionCompanies;
   // final List<ProductionCountry> productionCountries;
-  // final List<Season> seasons;
+  final List<SeasonModel> seasons;
   // final List<SpokenLanguage> spokenLanguages;
   final String status;
   final String tagline;
@@ -64,7 +65,7 @@ class TvDetailModel extends Equatable {
     required this.posterPath,
     // required this.productionCompanies,
     // required this.productionCountries,
-    // required this.seasons,
+    required this.seasons,
     // required this.spokenLanguages,
     required this.status,
     required this.tagline,
@@ -89,6 +90,7 @@ class TvDetailModel extends Equatable {
       voteAverage: voteAverage,
       voteCount: voteCount,
       popularity: popularity,
+      seasons: seasons.map((season) => season.toEntity()).toList(),
     );
   }
 
@@ -119,7 +121,7 @@ class TvDetailModel extends Equatable {
         posterPath,
         // productionCompanies,
         // productionCountries,
-        // seasons,
+        seasons,
         // spokenLanguages,
         status,
         tagline,
@@ -136,7 +138,8 @@ class TvDetailModel extends Equatable {
         episodeRunTime:
             List<dynamic>.from(json["episode_run_time"].map((x) => x)),
         firstAirDate: DateTime.parse(json["first_air_date"]),
-        genres: List<GenreModel>.from(json["genres"].map((x) => GenreModel.fromJson(x))),
+        genres: List<GenreModel>.from(
+            json["genres"].map((x) => GenreModel.fromJson(x))),
         homepage: json["homepage"],
         id: json["id"],
         inProduction: json["in_production"],
@@ -160,8 +163,8 @@ class TvDetailModel extends Equatable {
         // productionCountries: List<ProductionCountry>.from(
         //     json["production_countries"]
         //         .map((x) => ProductionCountry.fromMap(x))),
-        // seasons:
-        //     List<Season>.from(json["seasons"].map((x) => Season.fromMap(x))),
+        seasons: List<SeasonModel>.from(
+            json["seasons"].map((x) => SeasonModel.fromMap(x))),
         // spokenLanguages: List<SpokenLanguage>.from(
         //     json["spoken_languages"].map((x) => SpokenLanguage.fromMap(x))),
         status: json["status"],
@@ -201,7 +204,7 @@ class TvDetailModel extends Equatable {
         //     List<dynamic>.from(productionCompanies.map((x) => x.toMap())),
         // "production_countries":
         //     List<dynamic>.from(productionCountries.map((x) => x.toMap())),
-        // "seasons": List<dynamic>.from(seasons.map((x) => x.toMap())),
+        "seasons": List<dynamic>.from(seasons.map((x) => x.toMap())),
         // "spoken_languages":
         //     List<dynamic>.from(spokenLanguages.map((x) => x.toMap())),
         "status": status,
@@ -396,63 +399,6 @@ class TvDetailModel extends Equatable {
 //   Map<String, dynamic> toMap() => {
 //         "iso_3166_1": iso31661,
 //         "name": name,
-//       };
-// }
-
-// class Season extends Equatable {
-//   final DateTime airDate;
-//   final int episodeCount;
-//   final int id;
-//   final String name;
-//   final String overview;
-//   final String posterPath;
-//   final int seasonNumber;
-//   final double voteAverage;
-
-//   const Season({
-//     required this.airDate,
-//     required this.episodeCount,
-//     required this.id,
-//     required this.name,
-//     required this.overview,
-//     required this.posterPath,
-//     required this.seasonNumber,
-//     required this.voteAverage,
-//   });
-
-//   @override
-//   List<Object?> get props => [
-//         airDate,
-//         episodeCount,
-//         id,
-//         name,
-//         overview,
-//         posterPath,
-//         seasonNumber,
-//         voteAverage,
-//       ];
-
-//   factory Season.fromMap(Map<String, dynamic> json) => Season(
-//         airDate: DateTime.parse(json["air_date"]),
-//         episodeCount: json["episode_count"],
-//         id: json["id"],
-//         name: json["name"],
-//         overview: json["overview"],
-//         posterPath: json["poster_path"],
-//         seasonNumber: json["season_number"],
-//         voteAverage: json["vote_average"]?.toDouble(),
-//       );
-
-//   Map<String, dynamic> toMap() => {
-//         "air_date":
-//             "${airDate.year.toString().padLeft(4, '0')}-${airDate.month.toString().padLeft(2, '0')}-${airDate.day.toString().padLeft(2, '0')}",
-//         "episode_count": episodeCount,
-//         "id": id,
-//         "name": name,
-//         "overview": overview,
-//         "poster_path": posterPath,
-//         "season_number": seasonNumber,
-//         "vote_average": voteAverage,
 //       };
 // }
 

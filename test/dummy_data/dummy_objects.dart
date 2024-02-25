@@ -54,6 +54,7 @@ const testMovieDetail = MovieDetail(
   voteAverage: 1,
   voteCount: 1,
   popularity: 100,
+  seasons: [],
 );
 
 const testWatchlistMovie = Movie.watchlist(
