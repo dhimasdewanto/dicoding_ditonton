@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/movie.dart';
 import '../blocs/tv/tv_list_cubit.dart';
 import 'about_page.dart';
-import 'home_movie_page.dart';
 import 'on_the_air_tv_page.dart';
 import 'popular_tv_page.dart';
 import 'search_tv_page.dart';
@@ -61,7 +60,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
               onTap: () {
                 Navigator.pushReplacementNamed(
                   context,
-                  HomeMoviePage.routeName,
+                  Routes.movieHome,
                 );
               },
             ),

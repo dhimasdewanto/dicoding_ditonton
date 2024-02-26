@@ -5,6 +5,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie/movie.dart';
 
 import 'firebase_options.dart';
 import 'injection.dart' as di;
@@ -21,15 +22,10 @@ import 'presentation/blocs/tv/tv_list_cubit.dart';
 import 'presentation/blocs/tv/tv_search_cubit.dart';
 import 'presentation/blocs/watchlist/watchlist_movie_cubit.dart';
 import 'presentation/pages/about_page.dart';
-import 'presentation/pages/home_movie_page.dart';
 import 'presentation/pages/home_tv_page.dart';
-import 'presentation/pages/movie_detail_page.dart';
 import 'presentation/pages/on_the_air_tv_page.dart';
-import 'presentation/pages/popular_movies_page.dart';
 import 'presentation/pages/popular_tv_page.dart';
-import 'presentation/pages/search_page.dart';
 import 'presentation/pages/search_tv_page.dart';
-import 'presentation/pages/top_rated_movies_page.dart';
 import 'presentation/pages/top_rated_tv_page.dart';
 import 'presentation/pages/tv_detail_page.dart';
 import 'presentation/pages/watchlist_movies_page.dart';
@@ -124,7 +120,7 @@ class MyApp extends StatelessWidget {
         ],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
-            case HomeMoviePage.routeName:
+            case Routes.movieHome:
               return MaterialPageRoute(
                 builder: (_) => const HomeMoviePage(),
               );
@@ -136,7 +132,7 @@ class MyApp extends StatelessWidget {
               return CupertinoPageRoute(
                 builder: (_) => const OnTheAirTvPage(),
               );
-            case PopularMoviesPage.routeName:
+            case Routes.moviePopular:
               return CupertinoPageRoute(
                 builder: (_) => const PopularMoviesPage(),
               );
@@ -144,7 +140,7 @@ class MyApp extends StatelessWidget {
               return CupertinoPageRoute(
                 builder: (_) => const PopularTvPage(),
               );
-            case TopRatedMoviesPage.routeName:
+            case Routes.movieTopRated:
               return CupertinoPageRoute(
                 builder: (_) => const TopRatedMoviesPage(),
               );
@@ -152,7 +148,7 @@ class MyApp extends StatelessWidget {
               return CupertinoPageRoute(
                 builder: (_) => const TopRatedTvPage(),
               );
-            case MovieDetailPage.routeName:
+            case Routes.movieDetail:
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => MovieDetailPage(id: id),
@@ -164,7 +160,7 @@ class MyApp extends StatelessWidget {
                 builder: (_) => TvDetailPage(id: id),
                 settings: settings,
               );
-            case SearchPage.routeName:
+            case Routes.movieSearch:
               return CupertinoPageRoute(
                 builder: (_) => const SearchPage(),
               );

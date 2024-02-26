@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entities/movie.dart';
 import '../../domain/enums/show_type.dart';
-import '../../presentation/pages/movie_detail_page.dart';
 import '../pages/tv_detail_page.dart';
 
 class MovieCard extends StatelessWidget {
@@ -28,7 +27,7 @@ class MovieCard extends StatelessWidget {
           }
           Navigator.pushNamed(
             context,
-            MovieDetailPage.routeName,
+            Routes.movieDetail,
             arguments: movie.id,
           );
         },
