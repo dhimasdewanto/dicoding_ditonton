@@ -1,11 +1,13 @@
-import 'package:dicoding_ditonton/firebase_options.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'common/constants.dart';
 import 'common/utils.dart';
+import 'firebase_options.dart';
 import 'injection.dart' as di;
 import 'presentation/blocs/movie/movie_detail_cubit.dart';
 import 'presentation/blocs/movie/movie_list_cubit.dart';
@@ -35,12 +37,20 @@ import 'presentation/pages/watchlist_movies_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
 
   di.init();
+
+  /// Pass all uncaught "fatal" errors from the framework to Crashlytics.
+  ///
+  /// NOTE: For some reason, using non fatal option (recordFlutterError) won't send
+  /// error to crashlytics.
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
   runApp(const MyApp());
 }
@@ -103,7 +113,12 @@ class MyApp extends StatelessWidget {
           textTheme: kTextTheme,
         ),
         home: const HomeTvPage(),
-        navigatorObservers: [routeObserver],
+        navigatorObservers: [
+          routeObserver,
+          FirebaseAnalyticsObserver(
+            analytics: FirebaseAnalytics.instance,
+          ),
+        ],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case HomeMoviePage.routeName:
