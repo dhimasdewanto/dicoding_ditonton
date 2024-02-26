@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/constants.dart';
 import '../../common/state_enum.dart';
 import '../../domain/entities/movie.dart';
-import '../provider/tv/tv_list_notifier.dart';
+import '../blocs/tv/tv_list_cubit.dart';
 import 'about_page.dart';
 import 'home_movie_page.dart';
 import 'on_the_air_tv_page.dart';
@@ -28,7 +28,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => Provider.of<TvListNotifier>(context, listen: false)
+    Future.microtask(() => context.read<TvListCubit>()
       ..fetchOnTheAir()
       ..fetchPopular()
       ..fetchTopRated());
@@ -105,52 +105,58 @@ class _HomeTvPageState extends State<HomeTvPage> {
                 onTap: () =>
                     Navigator.pushNamed(context, OnTheAirTvPage.routeName),
               ),
-              Consumer<TvListNotifier>(builder: (context, data, child) {
-                final state = data.onTheAirState;
-                if (state == RequestState.loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state == RequestState.loaded) {
-                  return MovieList(data.onTheAirShows);
-                } else {
-                  return const Text('Failed');
-                }
-              }),
+              BlocBuilder<TvListCubit, TvListState>(
+                builder: (context, cubitState) {
+                  final state = cubitState.stateOnTheAir;
+                  if (state == RequestState.loading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state == RequestState.loaded) {
+                    return MovieList(cubitState.moviesOnTheAir);
+                  } else {
+                    return const Text('Failed');
+                  }
+                },
+              ),
               _buildSubHeading(
                 title: 'Popular',
                 onTap: () =>
                     Navigator.pushNamed(context, PopularTvPage.routeName),
               ),
-              Consumer<TvListNotifier>(builder: (context, data, child) {
-                final state = data.popularState;
-                if (state == RequestState.loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state == RequestState.loaded) {
-                  return MovieList(data.popularShows);
-                } else {
-                  return const Text('Failed');
-                }
-              }),
+              BlocBuilder<TvListCubit, TvListState>(
+                builder: (context, cubitState) {
+                  final state = cubitState.statePopular;
+                  if (state == RequestState.loading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state == RequestState.loaded) {
+                    return MovieList(cubitState.moviesPopular);
+                  } else {
+                    return const Text('Failed');
+                  }
+                },
+              ),
               _buildSubHeading(
                 title: 'Top Rated',
                 onTap: () =>
                     Navigator.pushNamed(context, TopRatedTvPage.routeName),
               ),
-              Consumer<TvListNotifier>(builder: (context, data, child) {
-                final state = data.topRatedState;
-                if (state == RequestState.loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state == RequestState.loaded) {
-                  return MovieList(data.topRatedShows);
-                } else {
-                  return const Text('Failed');
-                }
-              }),
+              BlocBuilder<TvListCubit, TvListState>(
+                builder: (context, cubitState) {
+                  final state = cubitState.stateTopRated;
+                  if (state == RequestState.loading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state == RequestState.loaded) {
+                    return MovieList(cubitState.moviesTopRated);
+                  } else {
+                    return const Text('Failed');
+                  }
+                },
+              ),
             ],
           ),
         ),

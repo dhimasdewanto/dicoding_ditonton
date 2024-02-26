@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/state_enum.dart';
 import '../../presentation/widgets/movie_card_list.dart';
-import '../provider/tv/top_rated_tv_notifier.dart';
+import '../blocs/tv/top_rated_tv_cubit.dart';
 
 class TopRatedTvPage extends StatefulWidget {
   static const routeName = '/top-rated-tv';
@@ -18,20 +18,19 @@ class _TopRatedTvPageState extends State<TopRatedTvPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-        () => Provider.of<TopRatedTvNotifier>(context, listen: false).fetch());
+    Future.microtask(() => context.read<TopRatedTvCubit>().fetch());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Top Rated Movies'),
+        title: const Text('Top Rated TV Shows'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<TopRatedTvNotifier>(
-          builder: (context, data, child) {
+        child: BlocBuilder<TopRatedTvCubit, TopRatedTvState>(
+          builder: (context, data) {
             if (data.state == RequestState.loading) {
               return const Center(
                 child: CircularProgressIndicator(),

@@ -20,11 +20,11 @@ class TvListCubit extends Cubit<TvListState> {
   final GetPopularTv getPopularTv;
   final GetTopRatedTv getTopRatedTv;
 
-  Future<void> fetchNowPlaying() async {
-    if (state.stateNowPlaying == RequestState.loading) {
+  Future<void> fetchOnTheAir() async {
+    if (state.stateOnTheAir == RequestState.loading) {
       return;
     }
-    emit(state.copyWith(stateNowPlaying: RequestState.loading));
+    emit(state.copyWith(stateOnTheAir: RequestState.loading));
 
     final result = await getOnTheAirTv();
     result.fold(
@@ -32,15 +32,15 @@ class TvListCubit extends Cubit<TvListState> {
         emit(
           state.copyWith(
             message: failure.message,
-            stateNowPlaying: RequestState.error,
+            stateOnTheAir: RequestState.error,
           ),
         );
       },
       (moviesData) {
         emit(
           state.copyWith(
-            moviesNowPlaying: moviesData,
-            stateNowPlaying: RequestState.loaded,
+            moviesOnTheAir: moviesData,
+            stateOnTheAir: RequestState.loaded,
           ),
         );
       },

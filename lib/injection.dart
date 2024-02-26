@@ -1,3 +1,9 @@
+import 'presentation/blocs/tv/on_the_air_tv_cubit.dart';
+import 'presentation/blocs/tv/popular_tv_cubit.dart';
+import 'presentation/blocs/tv/top_rated_tv_cubit.dart';
+import 'presentation/blocs/tv/tv_detail_cubit.dart';
+import 'presentation/blocs/tv/tv_list_cubit.dart';
+import 'presentation/blocs/tv/tv_search_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
@@ -36,12 +42,6 @@ import 'presentation/provider/movie/movie_list_notifier.dart';
 import 'presentation/provider/movie/movie_search_notifier.dart';
 import 'presentation/provider/movie/popular_movies_notifier.dart';
 import 'presentation/provider/movie/top_rated_movies_notifier.dart';
-import 'presentation/provider/tv/on_the_air_tv_notifier.dart';
-import 'presentation/provider/tv/popular_tv_notifier.dart';
-import 'presentation/provider/tv/top_rated_tv_notifier.dart';
-import 'presentation/provider/tv/tv_detail_notifier.dart';
-import 'presentation/provider/tv/tv_list_notifier.dart';
-import 'presentation/provider/tv/tv_search_notifier.dart';
 import 'presentation/provider/watchlist/watchlist_movie_notifier.dart';
 
 final locator = GetIt.instance;
@@ -82,14 +82,14 @@ void init() {
 
   /// Provider TV
   locator.registerFactory(
-    () => TvListNotifier(
+    () => TvListCubit(
       getOnTheAirTv: locator(),
       getPopularTv: locator(),
       getTopRatedTv: locator(),
     ),
   );
   locator.registerFactory(
-    () => TvDetailNotifier(
+    () => TvDetailCubit(
       getTvDetail: locator(),
       getTvRecommendations: locator(),
       getWatchListStatus: locator(),
@@ -98,22 +98,22 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => TvSearchNotifier(
+    () => TvSearchCubit(
       searchTv: locator(),
     ),
   );
   locator.registerFactory(
-    () => OnTheAirTvNotifier(
+    () => OnTheAirTvCubit(
       getOnTheAirTv: locator(),
     ),
   );
   locator.registerFactory(
-    () => PopularTvNotifier(
+    () => PopularTvCubit(
       getPopularTv: locator(),
     ),
   );
   locator.registerFactory(
-    () => TopRatedTvNotifier(
+    () => TopRatedTvCubit(
       getTopRatedTv: locator(),
     ),
   );

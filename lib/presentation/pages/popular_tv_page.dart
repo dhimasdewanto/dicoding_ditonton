@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/state_enum.dart';
 import '../../presentation/widgets/movie_card_list.dart';
-import '../provider/tv/popular_tv_notifier.dart';
+import '../blocs/tv/popular_tv_cubit.dart';
 
 class PopularTvPage extends StatefulWidget {
   static const routeName = '/popular-tv';
@@ -18,21 +18,19 @@ class _PopularTvPageState extends State<PopularTvPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<PopularTvNotifier>(context, listen: false)
-            .fetch());
+    Future.microtask(() => context.read<PopularTvCubit>().fetch());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Popular Movies'),
+        title: const Text('Popular TV Shows'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<PopularTvNotifier>(
-          builder: (context, data, child) {
+        child: BlocBuilder<PopularTvCubit, PopularTvState>(
+          builder: (context, data) {
             if (data.state == RequestState.loading) {
               return const Center(
                 child: CircularProgressIndicator(),

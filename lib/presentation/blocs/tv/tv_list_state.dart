@@ -1,8 +1,8 @@
 part of 'tv_list_cubit.dart';
 
 class TvListState extends Equatable {
-  final RequestState stateNowPlaying;
-  final List<Movie> moviesNowPlaying;
+  final RequestState stateOnTheAir;
+  final List<Movie> moviesOnTheAir;
   final RequestState statePopular;
   final List<Movie> moviesPopular;
   final RequestState stateTopRated;
@@ -10,8 +10,8 @@ class TvListState extends Equatable {
   final String message;
 
   const TvListState({
-    this.stateNowPlaying = RequestState.empty,
-    this.moviesNowPlaying = const [],
+    this.stateOnTheAir = RequestState.empty,
+    this.moviesOnTheAir = const [],
     this.statePopular = RequestState.empty,
     this.moviesPopular = const [],
     this.stateTopRated = RequestState.empty,
@@ -21,8 +21,8 @@ class TvListState extends Equatable {
 
   @override
   List<Object?> get props => [
-        stateNowPlaying,
-        moviesNowPlaying,
+        stateOnTheAir,
+        moviesOnTheAir,
         statePopular,
         moviesPopular,
         stateTopRated,
@@ -31,8 +31,8 @@ class TvListState extends Equatable {
       ];
 
   TvListState copyWith({
-    RequestState? stateNowPlaying,
-    List<Movie>? moviesNowPlaying,
+    RequestState? stateOnTheAir,
+    List<Movie>? moviesOnTheAir,
     RequestState? statePopular,
     List<Movie>? moviesPopular,
     RequestState? stateTopRated,
@@ -40,8 +40,8 @@ class TvListState extends Equatable {
     String? message,
   }) {
     return TvListState(
-      stateNowPlaying: stateNowPlaying ?? this.stateNowPlaying,
-      moviesNowPlaying: moviesNowPlaying ?? this.moviesNowPlaying,
+      stateOnTheAir: stateOnTheAir ?? this.stateOnTheAir,
+      moviesOnTheAir: moviesOnTheAir ?? this.moviesOnTheAir,
       statePopular: statePopular ?? this.statePopular,
       moviesPopular: moviesPopular ?? this.moviesPopular,
       stateTopRated: stateTopRated ?? this.stateTopRated,
