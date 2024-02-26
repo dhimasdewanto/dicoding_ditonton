@@ -3,7 +3,6 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/movie.dart';
-import '../pages/movie_detail_page.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard({
@@ -21,7 +20,7 @@ class MovieCard extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            MovieDetailPage.routeName,
+            Routes.movieDetail,
             arguments: movie.id,
           );
         },

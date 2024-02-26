@@ -10,13 +10,12 @@ import '../../domain/entities/movie_detail.dart';
 import '../blocs/movie_detail_cubit.dart';
 
 class MovieDetailPage extends StatefulWidget {
-  static const routeName = '/detail';
-
-  final int id;
   const MovieDetailPage({
     super.key,
     required this.id,
   });
+  
+  final int id;
 
   @override
   State<MovieDetailPage> createState() => _MovieDetailPageState();
@@ -207,7 +206,7 @@ class DetailContent extends StatelessWidget {
                                             onTap: () {
                                               Navigator.pushReplacementNamed(
                                                 context,
-                                                MovieDetailPage.routeName,
+                                                Routes.movieDetail,
                                                 arguments: movie.id,
                                               );
                                             },

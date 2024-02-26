@@ -6,8 +6,6 @@ import '../../presentation/widgets/movie_card_list.dart';
 import '../blocs/popular_movies_cubit.dart';
 
 class PopularMoviesPage extends StatefulWidget {
-  static const routeName = '/popular-movie';
-
   const PopularMoviesPage({super.key});
 
   @override

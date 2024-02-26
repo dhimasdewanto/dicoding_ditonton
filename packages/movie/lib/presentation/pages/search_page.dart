@@ -6,8 +6,6 @@ import '../../presentation/widgets/movie_card_list.dart';
 import '../blocs/movie_search_cubit.dart';
 
 class SearchPage extends StatelessWidget {
-  static const routeName = '/search';
-
   const SearchPage({super.key});
 
   @override
