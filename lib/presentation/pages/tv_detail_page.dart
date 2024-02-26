@@ -113,17 +113,17 @@ class DetailContent extends StatelessWidget {
                             ),
                             ElevatedButton(
                               onPressed: () async {
-                                final notifier = context.read<TvDetailCubit>();
+                                final bloc = context.read<TvDetailCubit>();
 
                                 if (!isAddedWatchlist) {
-                                  await notifier.addWatchlist(movie);
+                                  await bloc.addWatchlist(movie);
                                 } else {
-                                  await notifier.removeFromWatchlist(movie);
+                                  await bloc.removeFromWatchlist(movie);
                                 }
 
                                 if (context.mounted) {
                                   final message =
-                                      notifier.state.watchlistMessage;
+                                      bloc.state.watchlistMessage;
 
                                   if (message ==
                                           TvDetailCubit
