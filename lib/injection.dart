@@ -1,9 +1,3 @@
-import 'presentation/blocs/tv/on_the_air_tv_cubit.dart';
-import 'presentation/blocs/tv/popular_tv_cubit.dart';
-import 'presentation/blocs/tv/top_rated_tv_cubit.dart';
-import 'presentation/blocs/tv/tv_detail_cubit.dart';
-import 'presentation/blocs/tv/tv_list_cubit.dart';
-import 'presentation/blocs/tv/tv_search_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
@@ -37,26 +31,32 @@ import 'domain/usecases/watchlist/get_watchlist.dart';
 import 'domain/usecases/watchlist/get_watchlist_status.dart';
 import 'domain/usecases/watchlist/remove_watchlist.dart';
 import 'domain/usecases/watchlist/save_watchlist.dart';
+import 'presentation/blocs/movie/movie_detail_cubit.dart';
+import 'presentation/blocs/movie/movie_list_cubit.dart';
+import 'presentation/blocs/movie/movie_search_cubit.dart';
+import 'presentation/blocs/movie/popular_movies_cubit.dart';
+import 'presentation/blocs/movie/top_rated_movies_cubit.dart';
+import 'presentation/blocs/tv/on_the_air_tv_cubit.dart';
+import 'presentation/blocs/tv/popular_tv_cubit.dart';
+import 'presentation/blocs/tv/top_rated_tv_cubit.dart';
+import 'presentation/blocs/tv/tv_detail_cubit.dart';
+import 'presentation/blocs/tv/tv_list_cubit.dart';
+import 'presentation/blocs/tv/tv_search_cubit.dart';
 import 'presentation/blocs/watchlist/watchlist_movie_cubit.dart';
-import 'presentation/provider/movie/movie_detail_notifier.dart';
-import 'presentation/provider/movie/movie_list_notifier.dart';
-import 'presentation/provider/movie/movie_search_notifier.dart';
-import 'presentation/provider/movie/popular_movies_notifier.dart';
-import 'presentation/provider/movie/top_rated_movies_notifier.dart';
 
 final locator = GetIt.instance;
 
 void init() {
-  /// Provider Movie
+  /// Bloc Movie
   locator.registerFactory(
-    () => MovieListNotifier(
+    () => MovieListCubit(
       getNowPlayingMovies: locator(),
       getPopularMovies: locator(),
       getTopRatedMovies: locator(),
     ),
   );
   locator.registerFactory(
-    () => MovieDetailNotifier(
+    () => MovieDetailCubit(
       getMovieDetail: locator(),
       getMovieRecommendations: locator(),
       getWatchListStatus: locator(),
@@ -65,22 +65,22 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => MovieSearchNotifier(
+    () => MovieSearchCubit(
       searchMovies: locator(),
     ),
   );
   locator.registerFactory(
-    () => PopularMoviesNotifier(
-      locator(),
+    () => PopularMoviesCubit(
+      getPopularMovies: locator(),
     ),
   );
   locator.registerFactory(
-    () => TopRatedMoviesNotifier(
+    () => TopRatedMoviesCubit(
       getTopRatedMovies: locator(),
     ),
   );
 
-  /// Provider TV
+  /// Bloc TV
   locator.registerFactory(
     () => TvListCubit(
       getOnTheAirTv: locator(),
@@ -118,7 +118,7 @@ void init() {
     ),
   );
 
-  /// Provider Watchlist
+  /// Bloc Watchlist
   locator.registerFactory(
     () => WatchlistMovieCubit(
       getWatchlistMovies: locator(),

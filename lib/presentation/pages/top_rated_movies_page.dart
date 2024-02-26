@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/state_enum.dart';
-import '../provider/movie/top_rated_movies_notifier.dart';
 import '../../presentation/widgets/movie_card_list.dart';
+import '../blocs/movie/top_rated_movies_cubit.dart';
 
 class TopRatedMoviesPage extends StatefulWidget {
   static const routeName = '/top-rated-movie';
@@ -18,9 +18,7 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<TopRatedMoviesNotifier>(context, listen: false)
-            .fetchTopRatedMovies());
+    Future.microtask(() => context.read<TopRatedMoviesCubit>().fetch());
   }
 
   @override
@@ -31,8 +29,8 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<TopRatedMoviesNotifier>(
-          builder: (context, data, child) {
+        child: BlocBuilder<TopRatedMoviesCubit, TopRatedMoviesState>(
+          builder: (context, data) {
             if (data.state == RequestState.loading) {
               return const Center(
                 child: CircularProgressIndicator(),

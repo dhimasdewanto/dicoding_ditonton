@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/state_enum.dart';
-import '../provider/movie/popular_movies_notifier.dart';
 import '../../presentation/widgets/movie_card_list.dart';
+import '../blocs/movie/popular_movies_cubit.dart';
 
 class PopularMoviesPage extends StatefulWidget {
   static const routeName = '/popular-movie';
@@ -18,9 +18,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<PopularMoviesNotifier>(context, listen: false)
-            .fetchPopularMovies());
+    Future.microtask(() => context.read<PopularMoviesCubit>().fetch());
   }
 
   @override
@@ -31,8 +29,8 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<PopularMoviesNotifier>(
-          builder: (context, data, child) {
+        child: BlocBuilder<PopularMoviesCubit, PopularMoviesState>(
+          builder: (context, data) {
             if (data.state == RequestState.loading) {
               return const Center(
                 child: CircularProgressIndicator(),

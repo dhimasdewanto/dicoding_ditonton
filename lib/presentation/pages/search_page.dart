@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/constants.dart';
 import '../../common/state_enum.dart';
-import '../provider/movie/movie_search_notifier.dart';
 import '../../presentation/widgets/movie_card_list.dart';
+import '../blocs/movie/movie_search_cubit.dart';
 
 class SearchPage extends StatelessWidget {
   static const routeName = '/search';
@@ -24,8 +24,7 @@ class SearchPage extends StatelessWidget {
           children: [
             TextField(
               onSubmitted: (query) {
-                Provider.of<MovieSearchNotifier>(context, listen: false)
-                    .fetchMovieSearch(query);
+                context.read<MovieSearchCubit>().fetch(query);
               },
               decoration: const InputDecoration(
                 hintText: 'Search title',
@@ -39,19 +38,25 @@ class SearchPage extends StatelessWidget {
               'Search Result',
               style: kHeading6,
             ),
-            Consumer<MovieSearchNotifier>(
-              builder: (context, data, child) {
+            BlocBuilder<MovieSearchCubit, MovieSearchState>(
+              builder: (context, data) {
                 if (data.state == RequestState.loading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (data.state == RequestState.loaded) {
-                  final result = data.searchResult;
+                  final result = data.searchResults;
+                  if (result.isEmpty) {
+                    return const Center(
+                      child: Text("Search not found"),
+                    );
+                  }
+
                   return Expanded(
                     child: ListView.builder(
                       padding: const EdgeInsets.all(8),
                       itemBuilder: (context, index) {
-                        final movie = data.searchResult[index];
+                        final movie = data.searchResults[index];
                         return MovieCard(movie);
                       },
                       itemCount: result.length,
