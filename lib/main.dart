@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'common/constants.dart';
 import 'common/utils.dart';
+import 'data/datasources/http/http_helper.dart';
 import 'firebase_options.dart';
 import 'injection.dart' as di;
 import 'presentation/blocs/movie/movie_detail_cubit.dart';
@@ -44,7 +45,10 @@ Future<void> main() async {
   FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
   FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
 
-  di.init();
+  final httpSslClient = await getSSLPinningClient();
+  di.init(
+    httpClient: httpSslClient,
+  );
 
   /// Pass all uncaught "fatal" errors from the framework to Crashlytics.
   ///

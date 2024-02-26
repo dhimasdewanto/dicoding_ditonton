@@ -46,7 +46,9 @@ import 'presentation/blocs/watchlist/watchlist_movie_cubit.dart';
 
 final locator = GetIt.instance;
 
-void init() {
+void init({
+  required http.Client httpClient,
+}) {
   /// Bloc Movie
   locator.registerFactory(
     () => MovieListCubit(
@@ -181,5 +183,5 @@ void init() {
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
   /// External
-  locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton<http.Client>(() => httpClient);
 }
