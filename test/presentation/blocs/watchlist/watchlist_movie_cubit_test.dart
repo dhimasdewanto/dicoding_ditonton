@@ -1,51 +1,53 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:mocktail/mocktail.dart';
+
 import 'package:dicoding_ditonton/common/failure.dart';
 import 'package:dicoding_ditonton/common/state_enum.dart';
 import 'package:dicoding_ditonton/domain/usecases/movie/get_watchlist_movies.dart';
-import 'package:dicoding_ditonton/presentation/provider/watchlist/watchlist_movie_notifier.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
+import 'package:dicoding_ditonton/presentation/blocs/watchlist/watchlist_movie_cubit.dart';
 
 import '../../../dummy_data/dummy_objects.dart';
 
 class MockGetWatchlistMovies extends Mock implements GetWatchlistMovies {}
 
 void main() {
-  late WatchlistMovieNotifier provider;
+  late WatchlistMovieCubit bloc;
   late GetWatchlistMovies mockGetWatchlistMovies;
   late int listenerCallCount;
 
   setUp(() {
     listenerCallCount = 0;
     mockGetWatchlistMovies = MockGetWatchlistMovies();
-    provider = WatchlistMovieNotifier(
+    bloc = WatchlistMovieCubit(
       getWatchlistMovies: mockGetWatchlistMovies,
-    )..addListener(() {
-        listenerCallCount += 1;
-      });
+    );
+    bloc.stream.listen((_) {
+      listenerCallCount++;
+    });
   });
 
-  test('should change movies data when data is gotten successfully', () async {
+  test('Should change movies data when data is gotten successfully', () async {
     // arrange
     when(() => mockGetWatchlistMovies())
         .thenAnswer((_) async => const Right([testWatchlistMovie]));
     // act
-    await provider.fetchWatchlistMovies();
+    await bloc.fetch();
     // assert
-    expect(provider.watchlistState, RequestState.loaded);
-    expect(provider.watchlistMovies, [testWatchlistMovie]);
-    expect(listenerCallCount, 2);
+    expect(bloc.state.state, RequestState.loaded);
+    expect(bloc.state.movies, [testWatchlistMovie]);
+    expect(listenerCallCount, 1);
   });
 
-  test('should return error when data is unsuccessful', () async {
+  test('Should return error when data is unsuccessful', () async {
     // arrange
     when(() => mockGetWatchlistMovies())
         .thenAnswer((_) async => const Left(DatabaseFailure("Can't get data")));
     // act
-    await provider.fetchWatchlistMovies();
+    await bloc.fetch();
     // assert
-    expect(provider.watchlistState, RequestState.error);
-    expect(provider.message, "Can't get data");
-    expect(listenerCallCount, 2);
+    expect(bloc.state.state, RequestState.error);
+    expect(bloc.state.message, "Can't get data");
+    expect(listenerCallCount, 1);
   });
 }

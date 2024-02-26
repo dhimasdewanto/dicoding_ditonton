@@ -12,6 +12,7 @@ import 'presentation/blocs/tv/top_rated_tv_cubit.dart';
 import 'presentation/blocs/tv/tv_detail_cubit.dart';
 import 'presentation/blocs/tv/tv_list_cubit.dart';
 import 'presentation/blocs/tv/tv_search_cubit.dart';
+import 'presentation/blocs/watchlist/watchlist_movie_cubit.dart';
 import 'presentation/pages/about_page.dart';
 import 'presentation/pages/home_movie_page.dart';
 import 'presentation/pages/home_tv_page.dart';
@@ -30,7 +31,6 @@ import 'presentation/provider/movie/movie_list_notifier.dart';
 import 'presentation/provider/movie/movie_search_notifier.dart';
 import 'presentation/provider/movie/popular_movies_notifier.dart';
 import 'presentation/provider/movie/top_rated_movies_notifier.dart';
-import 'presentation/provider/watchlist/watchlist_movie_notifier.dart';
 
 void main() {
   di.init();
@@ -60,11 +60,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<PopularMoviesNotifier>(),
         ),
-
-        /// Watchlist
-        ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistMovieNotifier>(),
-        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -86,6 +81,11 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => di.locator<PopularTvCubit>(),
+          ),
+
+          /// Watchlist
+          BlocProvider(
+            create: (_) => di.locator<WatchlistMovieCubit>(),
           ),
         ],
         child: MaterialApp(

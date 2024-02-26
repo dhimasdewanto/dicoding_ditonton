@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/state_enum.dart';
 import '../../common/utils.dart';
-import '../provider/watchlist/watchlist_movie_notifier.dart';
 import '../../presentation/widgets/movie_card_list.dart';
+import '../blocs/watchlist/watchlist_movie_cubit.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
   static const routeName = '/watchlist-movie';
@@ -20,9 +20,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<WatchlistMovieNotifier>(context, listen: false)
-            .fetchWatchlistMovies());
+    Future.microtask(() => context.read<WatchlistMovieCubit>().fetch());
   }
 
   @override
@@ -33,8 +31,14 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
 
   @override
   void didPopNext() {
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
-        .fetchWatchlistMovies();
+    context.read<WatchlistMovieCubit>()
+        .fetch();
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    super.dispose();
   }
 
   @override
@@ -45,22 +49,22 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<WatchlistMovieNotifier>(
-          builder: (context, data, child) {
-            if (data.watchlistState == RequestState.loading) {
+        child: BlocBuilder<WatchlistMovieCubit, WatchlistMovieState>(
+          builder: (context, data) {
+            if (data.state == RequestState.loading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.watchlistState == RequestState.loaded) {
-              if (data.watchlistMovies.isEmpty) {
+            } else if (data.state == RequestState.loaded) {
+              if (data.movies.isEmpty) {
                 return const Center(
                   child: Text("Watchlist is Empty"),
                 );
               } else {
                 return ListView.builder(
-                  itemCount: data.watchlistMovies.length,
+                  itemCount: data.movies.length,
                   itemBuilder: (context, index) {
-                    final movie = data.watchlistMovies[index];
+                    final movie = data.movies[index];
                     return MovieCard(movie);
                   },
                 );
@@ -75,11 +79,5 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    routeObserver.unsubscribe(this);
-    super.dispose();
   }
 }
