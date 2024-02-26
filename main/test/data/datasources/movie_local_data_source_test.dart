@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:dicoding_ditonton/common/exception.dart';
+import 'package:core/core.dart';
 import 'package:dicoding_ditonton/data/datasources/db/database_helper.dart';
 import 'package:dicoding_ditonton/data/datasources/movie_local_data_source.dart';
 

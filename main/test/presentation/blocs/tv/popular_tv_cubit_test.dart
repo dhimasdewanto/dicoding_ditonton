@@ -2,8 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:dicoding_ditonton/common/failure.dart';
-import 'package:dicoding_ditonton/common/state_enum.dart';
+import 'package:core/core.dart';
 import 'package:dicoding_ditonton/domain/entities/movie.dart';
 import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 import 'package:dicoding_ditonton/domain/usecases/tv/get_popular_tv.dart';

@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
 
-import 'package:dicoding_ditonton/common/exception.dart';
+import 'package:core/core.dart';
 import 'package:dicoding_ditonton/data/datasources/movie_remote_data_source.dart';
 import 'package:dicoding_ditonton/data/models/movie_detail_model.dart';
 import 'package:dicoding_ditonton/data/models/movie_response.dart';

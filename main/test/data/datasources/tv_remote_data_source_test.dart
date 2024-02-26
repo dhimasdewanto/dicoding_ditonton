@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:dicoding_ditonton/common/exception.dart';
+import 'package:core/core.dart';
 import 'package:dicoding_ditonton/data/models/tv_detail_model.dart';
 import 'package:dicoding_ditonton/data/models/tv_response.dart';
 import 'package:http/http.dart' as http;

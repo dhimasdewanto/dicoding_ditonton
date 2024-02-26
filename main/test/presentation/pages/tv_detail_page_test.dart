@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:dicoding_ditonton/common/state_enum.dart';
+import 'package:core/core.dart';
 import 'package:dicoding_ditonton/domain/entities/movie.dart';
 import 'package:dicoding_ditonton/presentation/blocs/tv/tv_detail_cubit.dart';
 import 'package:dicoding_ditonton/presentation/pages/tv_detail_page.dart';

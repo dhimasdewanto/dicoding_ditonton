@@ -1,11 +1,10 @@
 import 'dart:io';
 
+import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:dicoding_ditonton/common/exception.dart';
-import 'package:dicoding_ditonton/common/failure.dart';
 import 'package:dicoding_ditonton/data/datasources/movie_local_data_source.dart';
 import 'package:dicoding_ditonton/data/datasources/movie_remote_data_source.dart';
 import 'package:dicoding_ditonton/data/models/genre_model.dart';

@@ -1,12 +1,10 @@
 import 'dart:io';
 
-import 'package:dicoding_ditonton/domain/entities/season.dart';
+import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:dicoding_ditonton/common/exception.dart';
-import 'package:dicoding_ditonton/common/failure.dart';
 import 'package:dicoding_ditonton/data/datasources/tv_remote_data_source.dart';
 import 'package:dicoding_ditonton/data/models/genre_model.dart';
 import 'package:dicoding_ditonton/data/models/season_model.dart';
@@ -14,6 +12,7 @@ import 'package:dicoding_ditonton/data/models/tv_detail_model.dart';
 import 'package:dicoding_ditonton/data/models/tv_model.dart';
 import 'package:dicoding_ditonton/data/repositories/tv_repository_impl.dart';
 import 'package:dicoding_ditonton/domain/entities/movie.dart';
+import 'package:dicoding_ditonton/domain/entities/season.dart';
 import 'package:dicoding_ditonton/domain/enums/show_type.dart';
 import 'package:dicoding_ditonton/domain/repositories/tv_repository.dart';
 
