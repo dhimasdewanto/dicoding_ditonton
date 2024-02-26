@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "997488368829",
+    "firebase_url": "https://social-app-9458e.firebaseio.com",
+    "project_id": "social-app-9458e",
+    "storage_bucket": "social-app-9458e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997488368829:android:b01a3e6be2d6db3faf2bd4",
+        "android_client_info": {
+          "package_name": "com.example.dicoding_ditonton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997488368829-h1nv3pp1ieodvnc2kdi39h9ret4oo6ll.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8KTwRMCo7fWC5-D428qq8b9OS6Vv_GkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997488368829-h1nv3pp1ieodvnc2kdi39h9ret4oo6ll.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

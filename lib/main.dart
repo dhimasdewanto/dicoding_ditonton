@@ -1,3 +1,5 @@
+import 'package:dicoding_ditonton/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,8 +33,15 @@ import 'presentation/pages/top_rated_tv_page.dart';
 import 'presentation/pages/tv_detail_page.dart';
 import 'presentation/pages/watchlist_movies_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   di.init();
+
   runApp(const MyApp());
 }
 
@@ -59,7 +68,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<PopularMoviesCubit>(),
         ),
-    
+
         /// TV
         BlocProvider(
           create: (_) => di.locator<TvListCubit>(),
@@ -79,7 +88,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<PopularTvCubit>(),
         ),
-    
+
         /// Watchlist
         BlocProvider(
           create: (_) => di.locator<WatchlistMovieCubit>(),
