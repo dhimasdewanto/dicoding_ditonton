@@ -6,20 +6,20 @@ import 'package:dicoding_ditonton/common/failure.dart';
 import 'package:dicoding_ditonton/common/state_enum.dart';
 import 'package:dicoding_ditonton/domain/entities/movie.dart';
 import 'package:dicoding_ditonton/domain/enums/show_type.dart';
-import 'package:dicoding_ditonton/domain/usecases/tv/get_on_the_air_tv.dart';
-import 'package:dicoding_ditonton/presentation/blocs/tv/on_the_air_tv_cubit.dart';
+import 'package:dicoding_ditonton/domain/usecases/tv/get_popular_tv.dart';
+import 'package:dicoding_ditonton/presentation/blocs/tv/popular_tv_cubit.dart';
 
-class MockGetOnTheAirTv extends Mock implements GetOnTheAirTv {}
+class MockGetPopularTv extends Mock implements GetPopularTv {}
 
 void main() {
-  late GetOnTheAirTv mockGetOnTheAirTv;
-  late OnTheAirTvCubit bloc;
+  late GetPopularTv mockGetPopularTv;
+  late PopularTvCubit bloc;
   late int listenerCallCount;
 
   setUp(() {
     listenerCallCount = 0;
-    mockGetOnTheAirTv = MockGetOnTheAirTv();
-    bloc = OnTheAirTvCubit(getOnTheAirTv: mockGetOnTheAirTv);
+    mockGetPopularTv = MockGetPopularTv();
+    bloc = PopularTvCubit(getPopularTv: mockGetPopularTv);
     bloc.stream.listen((_) {
       listenerCallCount++;
     });
@@ -44,7 +44,8 @@ void main() {
 
   test('Should change state to loading when usecase is called', () async {
     // arrange
-    when(() => mockGetOnTheAirTv()).thenAnswer((_) async => Right(tDummyList));
+    when(() => mockGetPopularTv())
+        .thenAnswer((_) async => Right(tDummyList));
     // act
     bloc.fetch();
     // assert
@@ -54,7 +55,7 @@ void main() {
 
   test('Should update tv show data when success result', () async {
     // arrange
-    when(() => mockGetOnTheAirTv())
+    when(() => mockGetPopularTv())
         .thenAnswer((_) async => Right(tDummyList));
     // act
     await bloc.fetch();
@@ -66,7 +67,7 @@ void main() {
 
   test('Should return error when data response is unsuccessful', () async {
     // arrange
-    when(() => mockGetOnTheAirTv())
+    when(() => mockGetPopularTv())
         .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
     // act
     await bloc.fetch();
