@@ -1,15 +1,15 @@
 import 'package:core/core.dart';
 import 'package:fpdart/fpdart.dart';
 
-import '../entities/movie.dart';
+import '../entities/watchlist.dart';
 import '../repositories/watchlist_repository.dart';
 
 class GetWatchlistItems {
-  final WatchlistRepository _repository;
+  final WatchlistRepository repo;
 
-  GetWatchlistItems(this._repository);
+  GetWatchlistItems({required this.repo});
 
-  Future<Either<Failure, List<Movie>>> call() {
-    return _repository.getList();
+  Future<Either<Failure, List<Watchlist>>> call() {
+    return repo.getList();
   }
 }

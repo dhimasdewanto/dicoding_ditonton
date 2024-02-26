@@ -2,19 +2,19 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../presentation/widgets/movie_card_list.dart';
+import '../widgets/watchlist_card.dart';
 import '../blocs/watchlist_list_cubit.dart';
 
-class WatchlistMoviesPage extends StatefulWidget {
+class WatchlistListPage extends StatefulWidget {
   static const routeName = '/watchlist-movie';
 
-  const WatchlistMoviesPage({super.key});
+  const WatchlistListPage({super.key});
 
   @override
-  State<WatchlistMoviesPage> createState() => _WatchlistMoviesPageState();
+  State<WatchlistListPage> createState() => _WatchlistListPageState();
 }
 
-class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
+class _WatchlistListPageState extends State<WatchlistListPage>
     with RouteAware {
   @override
   void initState() {
@@ -64,7 +64,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
                   itemCount: data.movies.length,
                   itemBuilder: (context, index) {
                     final movie = data.movies[index];
-                    return MovieCard(movie: movie);
+                    return WatchlistCard(watchlist: movie);
                   },
                 );
               }

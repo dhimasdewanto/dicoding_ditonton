@@ -6,8 +6,6 @@ import '../../presentation/widgets/movie_card_list.dart';
 import '../blocs/watchlist/watchlist_movie_cubit.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
-  static const routeName = '/watchlist-movie';
-
   const WatchlistMoviesPage({super.key});
 
   @override

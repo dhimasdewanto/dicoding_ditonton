@@ -7,37 +7,38 @@ import 'package:movie/domain/entities/movie.dart';
 import 'package:movie/domain/usecases/get_movie_detail.dart';
 import 'package:movie/domain/usecases/get_movie_recommendations.dart';
 import 'package:movie/presentation/blocs/movie_detail_cubit.dart';
+import 'package:watchlist/watchlist.dart';
 
 import '../../dummy_data/dummy_objects.dart';
 
 class MockGetMovieDetail extends Mock implements GetMovieDetail {}
 class MockGetMovieRecommendations extends Mock implements GetMovieRecommendations {}
-// class MockGetWatchListStatus extends Mock implements GetWatchListStatus {}
-// class MockSaveWatchlist extends Mock implements SaveWatchlist {}
-// class MockRemoveWatchlist extends Mock implements RemoveWatchlist {}
+class MockGetWatchListStatus extends Mock implements GetWatchListStatus {}
+class MockSaveWatchlist extends Mock implements SaveWatchlist {}
+class MockRemoveWatchlist extends Mock implements RemoveWatchlist {}
 
 void main() {
   late MovieDetailCubit bloc;
   late GetMovieDetail mockGetMovieDetail;
   late GetMovieRecommendations mockGetMovieRecommendations;
-  // late GetWatchListStatus mockGetWatchlistStatus;
-  // late SaveWatchlist mockSaveWatchlist;
-  // late RemoveWatchlist mockRemoveWatchlist;
+  late GetWatchListStatus mockGetWatchlistStatus;
+  late SaveWatchlist mockSaveWatchlist;
+  late RemoveWatchlist mockRemoveWatchlist;
   late int listenerCallCount;
 
   setUp(() {
     listenerCallCount = 0;
     mockGetMovieDetail = MockGetMovieDetail();
     mockGetMovieRecommendations = MockGetMovieRecommendations();
-    // mockGetWatchlistStatus = MockGetWatchListStatus();
-    // mockSaveWatchlist = MockSaveWatchlist();
-    // mockRemoveWatchlist = MockRemoveWatchlist();
+    mockGetWatchlistStatus = MockGetWatchListStatus();
+    mockSaveWatchlist = MockSaveWatchlist();
+    mockRemoveWatchlist = MockRemoveWatchlist();
     bloc = MovieDetailCubit(
       getMovieDetail: mockGetMovieDetail,
       getMovieRecommendations: mockGetMovieRecommendations,
-      // getWatchListStatus: mockGetWatchlistStatus,
-      // saveWatchlist: mockSaveWatchlist,
-      // removeWatchlist: mockRemoveWatchlist,
+      getWatchListStatus: mockGetWatchlistStatus,
+      saveWatchlist: mockSaveWatchlist,
+      removeWatchlist: mockRemoveWatchlist,
     );
     bloc.stream.listen((_) {
       listenerCallCount++;

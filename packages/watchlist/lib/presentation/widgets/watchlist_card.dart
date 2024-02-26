@@ -2,16 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/entities/movie.dart';
+import '../../domain/entities/watchlist.dart';
 import '../../domain/enums/show_type.dart';
 
-class MovieCard extends StatelessWidget {
-  const MovieCard({
+class WatchlistCard extends StatelessWidget {
+  const WatchlistCard({
     super.key,
-    required this.movie,
+    required this.watchlist,
   });
 
-  final Movie movie;
+  final Watchlist watchlist;
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +19,18 @@ class MovieCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
         onTap: () {
-          if (movie.type == ShowType.tv) {
+          if (watchlist.type == ShowType.tv) {
             Navigator.pushNamed(
               context,
               Routes.tvDetail,
-              arguments: movie.id,
+              arguments: watchlist.id,
             );
             return;
           }
           Navigator.pushNamed(
             context,
             Routes.movieDetail,
-            arguments: movie.id,
+            arguments: watchlist.id,
           );
         },
         child: Stack(
@@ -47,14 +47,14 @@ class MovieCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      movie.title ?? '-',
+                      watchlist.title ?? '-',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      movie.overview ?? '-',
+                      watchlist.overview ?? '-',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -70,7 +70,7 @@ class MovieCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(8)),
                 child: CachedNetworkImage(
-                  imageUrl: '$baseImageUrl${movie.posterPath}',
+                  imageUrl: '$baseImageUrl${watchlist.posterPath}',
                   width: 80,
                   placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),

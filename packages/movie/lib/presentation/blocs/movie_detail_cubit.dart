@@ -2,6 +2,9 @@ import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watchlist/domain/entities/watchlist.dart';
+import 'package:watchlist/domain/enums/show_type.dart';
+import 'package:watchlist/watchlist.dart';
 
 import '../../../domain/entities/movie.dart';
 import '../../../domain/entities/movie_detail.dart';
@@ -14,16 +17,16 @@ class MovieDetailCubit extends Cubit<MovieDetailState> {
   MovieDetailCubit({
     required this.getMovieDetail,
     required this.getMovieRecommendations,
-    // required this.getWatchListStatus,
-    // required this.saveWatchlist,
-    // required this.removeWatchlist,
+    required this.getWatchListStatus,
+    required this.saveWatchlist,
+    required this.removeWatchlist,
   }) : super(const MovieDetailState());
 
   final GetMovieDetail getMovieDetail;
   final GetMovieRecommendations getMovieRecommendations;
-  // final GetWatchListStatus getWatchListStatus;
-  // final SaveWatchlist saveWatchlist;
-  // final RemoveWatchlist removeWatchlist;
+  final GetWatchListStatus getWatchListStatus;
+  final SaveWatchlist saveWatchlist;
+  final RemoveWatchlist removeWatchlist;
 
   static const watchlistAddSuccessMessage = 'Added to Watchlist';
   static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
@@ -76,37 +79,47 @@ class MovieDetailCubit extends Cubit<MovieDetailState> {
   }
 
   Future<void> addWatchlist(MovieDetail movie) async {
-    // final result = await saveWatchlist(movie.toMovie());
-    // await result.fold(
-    //   (failure) async {
-    //     emit(state.copyWith(watchlistMessage: failure.message));
-    //   },
-    //   (successMessage) async {
-    //     emit(state.copyWith(watchlistMessage: successMessage));
-    //   },
-    // );
-    // await loadWatchlistStatus(movie.id);
+    final result = await saveWatchlist(_toWatchlist(movie));
+    await result.fold(
+      (failure) async {
+        emit(state.copyWith(watchlistMessage: failure.message));
+      },
+      (successMessage) async {
+        emit(state.copyWith(watchlistMessage: successMessage));
+      },
+    );
+    await loadWatchlistStatus(movie.id);
   }
 
   Future<void> removeFromWatchlist(MovieDetail movie) async {
-    // final result = await removeWatchlist(movie.toMovie());
-    // await result.fold(
-    //   (failure) async {
-    //     emit(state.copyWith(watchlistMessage: failure.message));
-    //   },
-    //   (successMessage) async {
-    //     emit(state.copyWith(watchlistMessage: successMessage));
-    //   },
-    // );
-    // await loadWatchlistStatus(movie.id);
+    final result = await removeWatchlist(_toWatchlist(movie));
+    await result.fold(
+      (failure) async {
+        emit(state.copyWith(watchlistMessage: failure.message));
+      },
+      (successMessage) async {
+        emit(state.copyWith(watchlistMessage: successMessage));
+      },
+    );
+    await loadWatchlistStatus(movie.id);
   }
 
   Future<void> loadWatchlistStatus(int id) async {
-    // final isAddedToWatchlist = await getWatchListStatus(id);
-    // emit(
-    //   state.copyWith(
-    //     isAddedToWatchlist: isAddedToWatchlist,
-    //   ),
-    // );
+    final isAddedToWatchlist = await getWatchListStatus(id);
+    emit(
+      state.copyWith(
+        isAddedToWatchlist: isAddedToWatchlist,
+      ),
+    );
+  }
+
+  Watchlist _toWatchlist(MovieDetail movie) {
+    return Watchlist(
+      type: ShowType.movie,
+      id: movie.id,
+      overview: movie.overview,
+      posterPath: movie.posterPath,
+      title: movie.title,
+    );
   }
 }

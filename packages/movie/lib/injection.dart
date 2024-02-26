@@ -65,9 +65,9 @@ void loadMovieInjection(GetIt locator) {
     () => MovieDetailCubit(
       getMovieDetail: locator(),
       getMovieRecommendations: locator(),
-      // getWatchListStatus: locator(),
-      // saveWatchlist: locator(),
-      // removeWatchlist: locator(),
+      getWatchListStatus: locator(),
+      saveWatchlist: locator(),
+      removeWatchlist: locator(),
     ),
   );
   locator.registerFactory(

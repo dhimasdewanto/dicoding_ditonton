@@ -2,7 +2,7 @@ part of 'watchlist_list_cubit.dart';
 
 class WatchlistState extends Equatable {
   final RequestState state;
-  final List<Movie> movies;
+  final List<Watchlist> movies;
   final String message;
 
   const WatchlistState({
@@ -20,7 +20,7 @@ class WatchlistState extends Equatable {
 
   WatchlistState copyWith({
     RequestState? state,
-    List<Movie>? movies,
+    List<Watchlist>? movies,
     String? message,
   }) {
     return WatchlistState(

@@ -11,7 +11,6 @@ import 'popular_tv_page.dart';
 import 'search_tv_page.dart';
 import 'top_rated_tv_page.dart';
 import 'tv_detail_page.dart';
-import 'watchlist_movies_page.dart';
 
 class HomeTvPage extends StatefulWidget {
   static const routeName = '/home-tv';
@@ -68,7 +67,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
               leading: const Icon(Icons.save_alt),
               title: const Text('Watchlist'),
               onTap: () {
-                Navigator.pushNamed(context, WatchlistMoviesPage.routeName);
+                Navigator.pushNamed(context, Routes.watchlist);
               },
             ),
             ListTile(
