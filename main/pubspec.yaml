@@ -61,6 +61,10 @@ dev_dependencies:
   flutter_lints: ^3.0.1
   
   flutter_launcher_icons: ^0.13.1
+
+  # To run test
+  bloc_test: ^9.1.6
+  flutter_bloc: ^8.1.4
   mocktail: ^1.0.3
   
 # The following section is specific to Flutter packages.

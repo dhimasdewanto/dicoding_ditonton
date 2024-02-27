@@ -23,8 +23,10 @@ void main() {
   });
 
   group('get Now Playing Movies', () {
+    const path = "dummy_data/now_playing.json";
+
     final tMovieList = MovieResponse.fromJson(
-            json.decode(readJson('dummy_data/now_playing.json')))
+            json.decode(readJson(path)))
         .movieList;
 
     test('should return list of Movie Model when the response code is 200',
@@ -34,7 +36,7 @@ void main() {
         () => mockHttpClient.get(any()),
       ).thenAnswer(
         (_) async =>
-            http.Response(readJson('dummy_data/now_playing.json'), 200),
+            http.Response(readJson(path), 200),
       );
       // act
       final result = await dataSource.getNowPlayingMovies();
