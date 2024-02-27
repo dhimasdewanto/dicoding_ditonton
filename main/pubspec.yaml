@@ -40,18 +40,9 @@ dependencies:
     path: ../packages/tv_show
   watchlist:
     path: ../packages/watchlist
-
-  cached_network_image: ^3.3.1
-  equatable: ^2.0.5
-  flutter_bloc: ^8.1.4
-  flutter_rating_bar: ^4.0.1
-  fpdart: ^1.1.0
+    
   get_it: ^7.6.7
-  google_fonts: ^6.1.0
   http: ^1.2.0
-  intl: ^0.19.0
-  path_provider: ^2.1.2
-  sqflite: ^2.3.2
 
   # Firebase
   firebase_analytics: ^10.8.6
@@ -68,9 +59,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.1
-
-  bloc_test: ^9.1.6
-  build_runner: ^2.4.8
+  
   flutter_launcher_icons: ^0.13.1
   mocktail: ^1.0.3
   
