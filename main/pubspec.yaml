@@ -36,6 +36,8 @@ dependencies:
     path: ../packages/core
   movie:
     path: ../packages/movie
+  tv_show:
+    path: ../packages/tv_show
   watchlist:
     path: ../packages/watchlist
 
