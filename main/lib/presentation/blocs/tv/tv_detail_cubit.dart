@@ -2,14 +2,12 @@ import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watchlist/watchlist.dart';
 
 import '../../../domain/entities/movie.dart';
 import '../../../domain/entities/movie_detail.dart';
 import '../../../domain/usecases/tv/get_tv_detail.dart';
 import '../../../domain/usecases/tv/get_tv_recommendations.dart';
-import '../../../domain/usecases/watchlist/get_watchlist_status.dart';
-import '../../../domain/usecases/watchlist/remove_watchlist.dart';
-import '../../../domain/usecases/watchlist/save_watchlist.dart';
 
 part 'tv_detail_state.dart';
 
@@ -79,7 +77,7 @@ class TvDetailCubit extends Cubit<TvDetailState> {
   }
 
   Future<void> addWatchlist(MovieDetail movie) async {
-    final result = await saveWatchlist(movie.toMovie());
+    final result = await saveWatchlist(toWatchlist(movie));
     await result.fold(
       (failure) async {
         emit(state.copyWith(watchlistMessage: failure.message));
@@ -92,7 +90,7 @@ class TvDetailCubit extends Cubit<TvDetailState> {
   }
 
   Future<void> removeFromWatchlist(MovieDetail movie) async {
-    final result = await removeWatchlist(movie.toMovie());
+    final result = await removeWatchlist(toWatchlist(movie));
     await result.fold(
       (failure) async {
         emit(state.copyWith(watchlistMessage: failure.message));
@@ -110,6 +108,16 @@ class TvDetailCubit extends Cubit<TvDetailState> {
       state.copyWith(
         isAddedToWatchlist: isAddedToWatchlist,
       ),
+    );
+  }
+
+  Watchlist toWatchlist(MovieDetail tv) {
+    return Watchlist(
+      type: ShowType.tv,
+      id: tv.id,
+      overview: tv.overview,
+      posterPath: tv.posterPath,
+      title: tv.title,
     );
   }
 }
