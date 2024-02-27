@@ -4,26 +4,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/movie.dart';
+import 'package:tv_show/tv_show.dart';
 import 'package:watchlist/injection.dart';
 import 'package:watchlist/watchlist.dart';
 
 import 'firebase_options.dart';
 import 'injection.dart' as di;
-import 'presentation/blocs/tv/on_the_air_tv_cubit.dart';
-import 'presentation/blocs/tv/popular_tv_cubit.dart';
-import 'presentation/blocs/tv/top_rated_tv_cubit.dart';
-import 'presentation/blocs/tv/tv_detail_cubit.dart';
-import 'presentation/blocs/tv/tv_list_cubit.dart';
-import 'presentation/blocs/tv/tv_search_cubit.dart';
 import 'presentation/pages/about_page.dart';
-import 'presentation/pages/home_tv_page.dart';
-import 'presentation/pages/on_the_air_tv_page.dart';
-import 'presentation/pages/popular_tv_page.dart';
-import 'presentation/pages/search_tv_page.dart';
-import 'presentation/pages/top_rated_tv_page.dart';
-import 'presentation/pages/tv_detail_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,32 +42,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RegisterMovieBloc(
+    return RegisterTvBloc(
       locator: di.locator,
-      child: RegisterWatchlistBloc(
-      locator: di.locator,
-        child: MultiBlocProvider(
-          providers: [
-            /// TV
-            BlocProvider(
-              create: (_) => di.locator<TvListCubit>(),
-            ),
-            BlocProvider(
-              create: (_) => di.locator<TvDetailCubit>(),
-            ),
-            BlocProvider(
-              create: (_) => di.locator<TvSearchCubit>(),
-            ),
-            BlocProvider(
-              create: (_) => di.locator<OnTheAirTvCubit>(),
-            ),
-            BlocProvider(
-              create: (_) => di.locator<TopRatedTvCubit>(),
-            ),
-            BlocProvider(
-              create: (_) => di.locator<PopularTvCubit>(),
-            ),
-          ],
+      child: RegisterMovieBloc(
+        locator: di.locator,
+        child: RegisterWatchlistBloc(
+        locator: di.locator,
           child: MaterialApp(
             title: 'Flutter Demo',
             theme: ThemeData.dark().copyWith(
@@ -101,11 +69,11 @@ class MyApp extends StatelessWidget {
                   return MaterialPageRoute(
                     builder: (_) => const HomeMoviePage(),
                   );
-                case HomeTvPage.routeName:
+                case Routes.tvHome:
                   return MaterialPageRoute(
                     builder: (_) => const HomeTvPage(),
                   );
-                case OnTheAirTvPage.routeName:
+                case Routes.tvOnTheAir:
                   return CupertinoPageRoute(
                     builder: (_) => const OnTheAirTvPage(),
                   );
@@ -113,7 +81,7 @@ class MyApp extends StatelessWidget {
                   return CupertinoPageRoute(
                     builder: (_) => const PopularMoviesPage(),
                   );
-                case PopularTvPage.routeName:
+                case Routes.tvPopular:
                   return CupertinoPageRoute(
                     builder: (_) => const PopularTvPage(),
                   );
@@ -121,7 +89,7 @@ class MyApp extends StatelessWidget {
                   return CupertinoPageRoute(
                     builder: (_) => const TopRatedMoviesPage(),
                   );
-                case TopRatedTvPage.routeName:
+                case Routes.tvTopRated:
                   return CupertinoPageRoute(
                     builder: (_) => const TopRatedTvPage(),
                   );
@@ -131,7 +99,7 @@ class MyApp extends StatelessWidget {
                     builder: (_) => MovieDetailPage(id: id),
                     settings: settings,
                   );
-                case TvDetailPage.routeName:
+                case Routes.tvDetail:
                   final id = settings.arguments as int;
                   return MaterialPageRoute(
                     builder: (_) => TvDetailPage(id: id),
@@ -141,7 +109,7 @@ class MyApp extends StatelessWidget {
                   return CupertinoPageRoute(
                     builder: (_) => const SearchPage(),
                   );
-                case SearchTvPage.routeName:
+                case Routes.tvSearch:
                   return CupertinoPageRoute(
                     builder: (_) => const SearchTvPage(),
                   );
@@ -149,7 +117,7 @@ class MyApp extends StatelessWidget {
                   return MaterialPageRoute(
                     builder: (_) => const WatchlistListPage(),
                   );
-                case AboutPage.routeName:
+                case Routes.about:
                   return MaterialPageRoute(
                     builder: (_) => const AboutPage(),
                   );
