@@ -34,7 +34,7 @@ class WatchlistTable extends Equatable {
         overview: map['overview'],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toMap() => {
         'id': id,
         'type': type,
         'title': title,
