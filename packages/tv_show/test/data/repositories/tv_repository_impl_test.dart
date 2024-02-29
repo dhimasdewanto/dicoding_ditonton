@@ -11,11 +11,12 @@ import 'package:tv_show/data/models/season_model.dart';
 import 'package:tv_show/data/models/tv_detail_model.dart';
 import 'package:tv_show/data/models/tv_model.dart';
 import 'package:tv_show/data/repositories/tv_repository_impl.dart';
+import 'package:tv_show/domain/entities/genre.dart';
 import 'package:tv_show/domain/entities/tv_show.dart';
 import 'package:tv_show/domain/entities/season.dart';
+import 'package:tv_show/domain/entities/tv_show_detail.dart';
 import 'package:tv_show/domain/repositories/tv_repository.dart';
 
-import '../../dummy_data/dummy_objects.dart';
 import '../../helpers/test_helper.dart';
 
 void main() {
@@ -75,7 +76,7 @@ void main() {
       final result = await repository.getOnTheAir();
       // assert
       verify(() => mockRemoteDataSource.getOnTheAir());
-      
+
       final resultList = result.getOrElse((_) => []);
       expect(resultList.firstOrNull?.id, tList.firstOrNull?.id);
     });
@@ -118,7 +119,7 @@ void main() {
           .thenAnswer((_) async => tModelList);
       // act
       final result = await repository.getPopular();
-      
+
       final resultList = result.getOrElse((_) => []);
       expect(resultList.firstOrNull?.id, tList.firstOrNull?.id);
     });
@@ -158,7 +159,7 @@ void main() {
       // act
       final result = await repository.getTopRated();
       // assert
-      
+
       final resultList = result.getOrElse((_) => []);
       expect(resultList.firstOrNull?.id, tList.firstOrNull?.id);
     });
@@ -191,6 +192,7 @@ void main() {
   group('Get Detail of TV Show', () {
     const tId = 557;
     final tTvResponse = TvDetailModel(
+      type: '',
       adult: false,
       backdropPath: 'backdropPath',
       genres: const [GenreModel(id: 1, name: 'Action')],
@@ -217,7 +219,7 @@ void main() {
       originCountry: const [],
       seasons: [
         SeasonModel(
-          airDate: DateTime.now(),
+          airDate: DateTime(1990),
           episodeCount: 5,
           id: 123,
           name: "Season 1",
@@ -227,7 +229,33 @@ void main() {
           voteAverage: 5,
         ),
       ],
-      type: '',
+    );
+    final tTvDetail = TvShowDetail(
+      adult: false,
+      backdropPath: 'backdropPath',
+      genres: const [Genre(id: 1, name: 'Action')],
+      id: tId,
+      originalTitle: 'originalTitle',
+      overview: 'overview',
+      popularity: 1,
+      posterPath: 'posterPath',
+      voteAverage: 1,
+      voteCount: 1,
+      title: '',
+      releaseDate: "2000-01-01 00:00:00.000",
+      runtime: 3,
+      seasons: [
+        Season(
+          airDate: DateTime(1990),
+          episodeCount: 5,
+          id: 123,
+          name: "Season 1",
+          overview: "",
+          posterPath: "",
+          seasonNumber: 1,
+          voteAverage: 5,
+        ),
+      ],
     );
 
     test(
@@ -241,10 +269,11 @@ void main() {
       // assert
       verify(() => mockRemoteDataSource.getDetail(tId));
 
-      final id = result.map((res) => res.id).fold((l) => null, (r) => r);
-      final seasons = result.map((res) => res.seasons).fold((l) => <Season>[], (r) => r);
-      expect(id, testDetail.id);
-      expect(seasons.firstOrNull?.id, testDetail.seasons.firstOrNull?.id);
+      final res = result.map((res) => res).fold((l) => null, (r) => r);
+      final seasons =
+          result.map((res) => res.seasons).fold((l) => <Season>[], (r) => r);
+      expect(res, tTvDetail);
+      expect(seasons.firstOrNull, tTvDetail.seasons.firstOrNull);
     });
 
     test(
@@ -281,8 +310,7 @@ void main() {
     // final tMovieList = <TvModel>[];
     const tId = 1;
 
-    test('should return data (tv list) when the call is successful',
-        () async {
+    test('should return data (tv list) when the call is successful', () async {
       // arrange
       when(() => mockRemoteDataSource.getRecommendations(tId))
           .thenAnswer((_) async => tModelList);
@@ -336,7 +364,7 @@ void main() {
       // act
       final result = await repository.search(tQuery);
       // assert
-      
+
       final resultList = result.getOrElse((_) => []);
       expect(resultList.firstOrNull?.id, tList.firstOrNull?.id);
     });
