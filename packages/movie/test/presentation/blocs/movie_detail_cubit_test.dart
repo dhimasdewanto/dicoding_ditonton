@@ -4,6 +4,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:movie/domain/entities/movie.dart';
+import 'package:movie/domain/entities/movie_detail.dart';
 import 'package:movie/domain/usecases/get_movie_detail.dart';
 import 'package:movie/domain/usecases/get_movie_recommendations.dart';
 import 'package:movie/presentation/blocs/movie_detail_cubit.dart';
@@ -12,9 +13,14 @@ import 'package:watchlist/watchlist.dart';
 import '../../dummy_data/dummy_objects.dart';
 
 class MockGetMovieDetail extends Mock implements GetMovieDetail {}
-class MockGetMovieRecommendations extends Mock implements GetMovieRecommendations {}
+
+class MockGetMovieRecommendations extends Mock
+    implements GetMovieRecommendations {}
+
 class MockGetWatchListStatus extends Mock implements GetWatchListStatus {}
+
 class MockSaveWatchlist extends Mock implements SaveWatchlist {}
+
 class MockRemoveWatchlist extends Mock implements RemoveWatchlist {}
 
 void main() {
@@ -149,76 +155,76 @@ void main() {
     });
   });
 
-  // group('Watchlist', () {
-  //   test('Should get the watchlist status', () async {
-  //     // arrange
-  //     when(() => mockGetWatchlistStatus(1)).thenAnswer((_) async => true);
-  //     // act
-  //     await bloc.loadWatchlistStatus(1);
-  //     // assert
-  //     expect(bloc.state.isAddedToWatchlist, true);
-  //   });
+  group('Watchlist', () {
+    test('Should get the watchlist status', () async {
+      // arrange
+      when(() => mockGetWatchlistStatus(1)).thenAnswer((_) async => true);
+      // act
+      await bloc.loadWatchlistStatus(1);
+      // assert
+      expect(bloc.state.isAddedToWatchlist, true);
+    });
 
-  //   test('Should execute save watchlist when function called', () async {
-  //     // arrange
-  //     const itemDetail = testMovieDetail;
-  //     final item = itemDetail.toMovie();
-  //     when(() => mockSaveWatchlist(item))
-  //         .thenAnswer((_) async => const Right('Success'));
-  //     when(() => mockGetWatchlistStatus(itemDetail.id))
-  //         .thenAnswer((_) async => true);
-  //     // act
-  //     await bloc.addWatchlist(itemDetail);
-  //     // assert
-  //     verify(() => mockSaveWatchlist(item));
-  //   });
+    test('Should execute save watchlist when function called', () async {
+      // arrange
+      const itemDetail = testMovieDetail;
+      final watchlist = _toWatchlist(itemDetail);
+      when(() => mockSaveWatchlist(watchlist))
+          .thenAnswer((_) async => const Right('Success'));
+      when(() => mockGetWatchlistStatus(itemDetail.id))
+          .thenAnswer((_) async => true);
+      // act
+      await bloc.addWatchlist(itemDetail);
+      // assert
+      verify(() => mockSaveWatchlist(watchlist));
+    });
 
-  //   test('Should execute remove watchlist when function called', () async {
-  //     // arrange
-  //     const itemDetail = testMovieDetail;
-  //     final item = itemDetail.toMovie();
-  //     when(() => mockRemoveWatchlist(item))
-  //         .thenAnswer((_) async => const Right('Removed'));
-  //     when(() => mockGetWatchlistStatus(itemDetail.id))
-  //         .thenAnswer((_) async => false);
-  //     // act
-  //     await bloc.removeFromWatchlist(itemDetail);
-  //     // assert
-  //     verify(() => mockRemoveWatchlist(item));
-  //   });
+    test('Should execute remove watchlist when function called', () async {
+      // arrange
+      const itemDetail = testMovieDetail;
+      final watchlist = _toWatchlist(itemDetail);
+      when(() => mockRemoveWatchlist(watchlist))
+          .thenAnswer((_) async => const Right('Removed'));
+      when(() => mockGetWatchlistStatus(itemDetail.id))
+          .thenAnswer((_) async => false);
+      // act
+      await bloc.removeFromWatchlist(itemDetail);
+      // assert
+      verify(() => mockRemoveWatchlist(watchlist));
+    });
 
-  //   test('Should update watchlist status when add watchlist success', () async {
-  //     // arrange
-  //     const itemDetail = testMovieDetail;
-  //     final item = itemDetail.toMovie();
-  //     when(() => mockSaveWatchlist(item))
-  //         .thenAnswer((_) async => const Right('Added to Watchlist'));
-  //     when(() => mockGetWatchlistStatus(itemDetail.id))
-  //         .thenAnswer((_) async => true);
-  //     // act
-  //     await bloc.addWatchlist(itemDetail);
-  //     // assert
-  //     verify(() => mockGetWatchlistStatus(itemDetail.id));
-  //     expect(bloc.state.isAddedToWatchlist, true);
-  //     expect(bloc.state.watchlistMessage, 'Added to Watchlist');
-  //     expect(listenerCallCount, 1);
-  //   });
+    test('Should update watchlist status when add watchlist success', () async {
+      // arrange
+      const itemDetail = testMovieDetail;
+      final watchlist = _toWatchlist(itemDetail);
+      when(() => mockSaveWatchlist(watchlist))
+          .thenAnswer((_) async => const Right('Added to Watchlist'));
+      when(() => mockGetWatchlistStatus(itemDetail.id))
+          .thenAnswer((_) async => true);
+      // act
+      await bloc.addWatchlist(itemDetail);
+      // assert
+      verify(() => mockGetWatchlistStatus(itemDetail.id));
+      expect(bloc.state.isAddedToWatchlist, true);
+      expect(bloc.state.watchlistMessage, 'Added to Watchlist');
+      expect(listenerCallCount, 1);
+    });
 
-  //   test('Should update watchlist message when add watchlist failed', () async {
-  //     // arrange
-  //     const itemDetail = testMovieDetail;
-  //     final item = itemDetail.toMovie();
-  //     when(() => mockSaveWatchlist(item))
-  //         .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
-  //     when(() => mockGetWatchlistStatus(itemDetail.id))
-  //         .thenAnswer((_) async => false);
-  //     // act
-  //     await bloc.addWatchlist(itemDetail);
-  //     // assert
-  //     expect(bloc.state.watchlistMessage, 'Failed');
-  //     expect(listenerCallCount, 1);
-  //   });
-  // });
+    test('Should update watchlist message when add watchlist failed', () async {
+      // arrange
+      const itemDetail = testMovieDetail;
+      final watchlist = _toWatchlist(itemDetail);
+      when(() => mockSaveWatchlist(watchlist))
+          .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
+      when(() => mockGetWatchlistStatus(itemDetail.id))
+          .thenAnswer((_) async => false);
+      // act
+      await bloc.addWatchlist(itemDetail);
+      // assert
+      expect(bloc.state.watchlistMessage, 'Failed');
+      expect(listenerCallCount, 1);
+    });
+  });
 
   group('When Error Occur', () {
     test('Should return error when data is unsuccessful', () async {
@@ -235,4 +241,14 @@ void main() {
       expect(listenerCallCount, 2);
     });
   });
+}
+
+Watchlist _toWatchlist(MovieDetail movie) {
+  return Watchlist(
+    type: ShowType.movie,
+    id: movie.id,
+    overview: movie.overview,
+    posterPath: movie.posterPath,
+    title: movie.title,
+  );
 }
