@@ -9,6 +9,8 @@ import 'package:tv_show/domain/entities/tv_show.dart';
 import 'package:tv_show/presentation/blocs/popular_tv_cubit.dart';
 import 'package:tv_show/presentation/pages/popular_tv_page.dart';
 
+import '../../dummy_data/dummy_objects.dart';
+
 class MockPopularTvCubit extends MockCubit<PopularTvState>
     implements PopularTvCubit {}
 
@@ -52,7 +54,7 @@ void main() {
       Stream.fromIterable([]),
       initialState: const PopularTvState(
         state: RequestState.loaded,
-        shows: <TvShow>[],
+        shows: <TvShow>[testItem],
       ),
     );
 

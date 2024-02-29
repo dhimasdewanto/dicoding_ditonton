@@ -9,6 +9,8 @@ import 'package:tv_show/domain/entities/tv_show.dart';
 import 'package:tv_show/presentation/blocs/top_rated_tv_cubit.dart';
 import 'package:tv_show/presentation/pages/top_rated_tv_page.dart';
 
+import '../../dummy_data/dummy_objects.dart';
+
 class MockTopRatedTvCubit extends MockCubit<TopRatedTvState>
     implements TopRatedTvCubit {}
 
@@ -52,7 +54,7 @@ void main() {
       Stream.fromIterable([]),
       initialState: const TopRatedTvState(
         state: RequestState.loaded,
-        shows: <TvShow>[],
+        shows: <TvShow>[testItem],
       ),
     );
 

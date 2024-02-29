@@ -9,6 +9,8 @@ import 'package:tv_show/domain/entities/tv_show.dart';
 import 'package:tv_show/presentation/blocs/on_the_air_tv_cubit.dart';
 import 'package:tv_show/presentation/pages/on_the_air_tv_page.dart';
 
+import '../../dummy_data/dummy_objects.dart';
+
 class MockOnTheAirTvCubit extends MockCubit<OnTheAirTvState> implements OnTheAirTvCubit {}
 
 void main() {
@@ -53,7 +55,7 @@ void main() {
       Stream.fromIterable([]),
       initialState: const OnTheAirTvState(
         state: RequestState.loaded,
-        shows: <TvShow>[],
+        shows: <TvShow>[testItem],
       ),
     );
 
