@@ -36,7 +36,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
                 backgroundImage: AssetImage('assets/circle-g.png'),
               ),
               accountName: Text('Ditonton'),
-              accountEmail: Text('ditonton@dicoding.com'),
+              accountEmail: Text('dhimasbrd@gmail.com'),
             ),
             ListTile(
               leading: const Icon(Icons.tv),

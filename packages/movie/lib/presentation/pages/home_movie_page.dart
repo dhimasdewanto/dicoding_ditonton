@@ -38,7 +38,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                 backgroundImage: AssetImage('assets/circle-g.png'),
               ),
               accountName: Text('Ditonton'),
-              accountEmail: Text('ditonton@dicoding.com'),
+              accountEmail: Text('dhimasbrd@gmail.com'),
             ),
             ListTile(
               leading: const Icon(Icons.tv),
